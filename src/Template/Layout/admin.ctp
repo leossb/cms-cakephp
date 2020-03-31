@@ -89,12 +89,8 @@ $cakeDescription = 'CMS';
                             <div class="dropdown-header noti-title">
                                 <h6 class="text-overflow m-0"><?= __('Welcome') ?></h6>
                             </div>
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <i class="fe-user"></i><span><?= __('Account') ?></span>
-                            </a>
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <i class="fe-settings"></i><span><?= __('Change password') ?></span>
-                            </a>
+                            <?= $this->Html->link('<i class="fe-user"></i><span>'.__('Account').'</span>',['controller'=>'users','action'=>'view'],['class'=>'dropdown-item notify-item', 'escape'=>false]) ?>
+                            <?= $this->Html->link('<i class="fe-settings"></i><span>'.__('Change password').'</span>',['controller'=>'users','action'=>'change-password'],['class'=>'dropdown-item notify-item', 'escape'=>false]) ?>
                             <div class="dropdown-divider"></div>
                             <?= $this->Html->link('<i class="fe-log-out"></i><span>'.__('Logout').'</span>',['controller'=>'users','action'=>'logout'],['class'=>'dropdown-item notify-item', 'escape'=>false]) ?>
                         </div>
@@ -148,11 +144,22 @@ $cakeDescription = 'CMS';
                         <ul class="metismenu" id="side-menu">
                             <li class="menu-title"><?= __('Navigation') ?></li>
                             <li><?= $this->Html->link('<i class="fe-airplay"></i><span>'.__('Dashboard').'</span>',['controller'=>'dashboard','action'=>'index'],['escape'=>false]) ?></li>
-                            <li><?= $this->Html->link('<i class="fe-layout"></i><span>'.__('Categories').'</span>',['controller'=>'categories','action'=>'index'],['escape'=>false]) ?></li>
-                            <li><?= $this->Html->link('<i class="fe-bookmark"></i><span>'.__('Articles').'</span>',['controller'=>'articles','action'=>'index'],['escape'=>false]) ?></li>
+
+                            <li>
+                                <a href="javascript: void(0);">
+                                    <i class="fe-bookmark"></i>
+                                    <span><?= __('Articles') ?></span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li><?= $this->Html->link(__('New').' '.__('Article'),['controller'=>'articles','action'=>'add'],['escape'=>false]) ?></li>
+                                    <li><?= $this->Html->link(__('Articles').' '.__('List'),['controller'=>'articles','action'=>'index'],['escape'=>false]) ?></li>
+                                    <li><?= $this->Html->link(__('Categories'),['controller'=>'categories','action'=>'index'],['escape'=>false]) ?></li>
+                                    <li><?= $this->Html->link(__('Tags'),['controller'=>'tags','action'=>'index'],['escape'=>false]) ?></li>
+                                    <li><?= $this->Html->link(__('Comments'),['controller'=>'comments','action'=>'index'],['escape'=>false]) ?></li>
+                                </ul>
+                            </li>
                             <li><?= $this->Html->link('<i class="fe-book-open"></i><span>'.__('Pages').'</span>',['controller'=>'pgs','action'=>'index'],['escape'=>false]) ?></li>
-                            <li><?= $this->Html->link('<i class="fe-file-text"></i><span>'.__('Tags').'</span>',['controller'=>'tags','action'=>'index'],['escape'=>false]) ?></li>
-                            <li><?= $this->Html->link('<i class="fe-box"></i><span>'.__('Comments').'</span>',['controller'=>'comments','action'=>'index'],['escape'=>false]) ?></li>
                             <li><?= $this->Html->link('<i class="fe-users"></i><span>'.__('Users').'</span>',['controller'=>'users','action'=>'index'],['escape'=>false]) ?></li>
                         </ul>
                     </div>
