@@ -18,6 +18,7 @@ class ArticlesController extends AppController
         $this->Auth->allow(['tags']);
         $this->loadComponent('Paginator');
         $this->loadComponent('Flash'); // Include the FlashComponent
+        $this->viewBuilder()->setLayout('admin');
     }
 
     /**
@@ -27,8 +28,9 @@ class ArticlesController extends AppController
      */
     public function index()
     {
-        $this->paginate = ['contain' => ['Users']];
-        $articles = $this->paginate($this->Articles);
+        /*$this->paginate = ['contain' => ['Users']];
+        $articles = $this->paginate($this->Articles);*/
+        $articles = $this->Articles->find('all');
         $this->set(compact('articles'));
     }
 

@@ -42,9 +42,11 @@
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
                 <th scope="col"><?= __('User Id') ?></th>
+                <th scope="col"><?= __('Category Id') ?></th>
                 <th scope="col"><?= __('Title') ?></th>
                 <th scope="col"><?= __('Slug') ?></th>
                 <th scope="col"><?= __('Body') ?></th>
+                <th scope="col"><?= __('Type') ?></th>
                 <th scope="col"><?= __('Published') ?></th>
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
@@ -54,9 +56,11 @@
             <tr>
                 <td><?= h($articles->id) ?></td>
                 <td><?= h($articles->user_id) ?></td>
+                <td><?= h($articles->category_id) ?></td>
                 <td><?= h($articles->title) ?></td>
                 <td><?= h($articles->slug) ?></td>
                 <td><?= h($articles->body) ?></td>
+                <td><?= h($articles->type) ?></td>
                 <td><?= h($articles->published) ?></td>
                 <td><?= h($articles->created) ?></td>
                 <td><?= h($articles->modified) ?></td>

@@ -4,42 +4,60 @@
  * @var \App\Model\Entity\Tag[]|\Cake\Collection\CollectionInterface $tags
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Tag'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Articles'), ['controller' => 'Articles', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Article'), ['controller' => 'Articles', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="tags index large-9 medium-8 columns content">
-    <h3><?= __('Tags') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('title') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($tags as $tag): ?>
-            <tr>
-                <td><?= $this->Number->format($tag->id) ?></td>
-                <td><?= h($tag->title) ?></td>
-                <td><?= h($tag->created) ?></td>
-                <td><?= h($tag->modified) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $tag->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $tag->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $tag->id], ['confirm' => __('Are you sure you want to delete # {0}?', $tag->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+
+<!-- Css -->
+<?= $this->Html->css('../libs/datatables/dataTables.bootstrap4.css', ['block' => 'cssDatatable']) ?>
+<?= $this->Html->css('../libs/datatables/buttons.bootstrap4.css', ['block' => 'cssDatatable']) ?>
+<?= $this->Html->css('../libs/datatables/responsive.bootstrap4.css', ['block' => 'cssDatatable']) ?>
+
+<!-- Required datatable js -->
+<?= $this->Html->script('../libs/datatables/jquery.dataTables.min.js', ['block' => 'scriptDatatable']) ?>
+<?= $this->Html->script('../libs/datatables/jquery.dataTables.min.js', ['block' => 'scriptDatatable']) ?>
+<!-- Buttons examples -->
+<?= $this->Html->script('../libs/datatables/dataTables.buttons.min.js', ['block' => 'scriptDatatableAdv']) ?>
+<?= $this->Html->script('../libs/datatables/buttons.bootstrap4.min.js', ['block' => 'scriptDatatableAdv']) ?>
+<?= $this->Html->script('../libs/jszip/jszip.min.js', ['block' => 'scriptJszip']) ?>
+<?= $this->Html->script('../libs/pdfmake/pdfmake.min.js', ['block' => 'scriptPdfmake']) ?>
+<?= $this->Html->script('../libs/pdfmake/vfs_fonts.js', ['block' => 'scriptVfsfonts']) ?>
+<?= $this->Html->script('../libs/datatables/buttons.html5.min.js', ['block' => 'scriptDatatableAdv']) ?>
+<?= $this->Html->script('../libs/datatables/buttons.print.min.js', ['block' => 'scriptDatatableAdv']) ?>
+<!-- Datatables init -->
+<?= $this->Html->script('pages/datatables.init.js', ['block' => 'scriptDatatableInit']) ?>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card-box table-responsive">
+            <?= $this->Html->link(__('New Tag'), ['action' => 'add'],["class"=>"btn btn-outline-primary btn-rounded waves-light waves-effect width-md float-right"]) ?>
+            <h4 class="header-title"><b><?= __('Tags') ?></b></h4>
+            <p class="sub-header"><?= __('Tags') ?> <?= __('List') ?></p>
+            <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                <thead>
+                <tr>
+                                            <th scope="col"><?= __('id') ?></th>
+                                            <th scope="col"><?= __('title') ?></th>
+                                            <th scope="col"><?= __('created') ?></th>
+                                            <th scope="col"><?= __('modified') ?></th>
+                                        <th scope="col" class="actions"><?= __('Actions') ?></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($tags as $tag): ?>
+                <tr>
+                                                                                                                                                                                    <td><?= $this->Number->format($tag->id) ?></td>
+                                                                                                                                                                                                                                        <td><?= h($tag->title) ?></td>
+                                                                                                                                                                                                                                        <td><?= h($tag->created) ?></td>
+                                                                                                                                                                                                                                        <td><?= h($tag->modified) ?></td>
+                                                                                                                <td class="actions">
+                        <?= $this->Html->link('<i class="fas fa-pencil-alt"></i>', ['action' => 'edit', $tag->id], ['class'=>'btn btn-icon waves-effect waves-light btn-primary btn-sm','escape'=>false,'alt'=>__('Edit')]) ?>
+                        <?= $this->Form->postLink('<i class="fas fa-times"></i>', ['action' => 'delete', $tag->id], ['class'=>'btn btn-icon waves-effect waves-light btn-danger btn-sm','escape'=>false,'alt'=>__('Delete'),'confirm' => __('Are you sure you want to delete # {0}?', $tag->id)]) ?>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--
     <div class="paginator">
         <ul class="pagination">
             <?= $this->Paginator->first('<< ' . __('first')) ?>
@@ -50,4 +68,5 @@
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
+    -->
 </div>

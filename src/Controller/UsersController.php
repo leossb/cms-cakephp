@@ -16,6 +16,9 @@ class UsersController extends AppController
     {
         parent::initialize();
         $this->Auth->allow(['logout', 'add']);
+        $this->loadComponent('Paginator');
+        $this->loadComponent('Flash'); // Include the FlashComponent
+        $this->viewBuilder()->setLayout('admin');
     }
 
     /**
@@ -107,6 +110,7 @@ class UsersController extends AppController
 
     public function login()
     {
+        $this->viewBuilder()->setLayout('alert-card');
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
             if ($user) {
@@ -119,7 +123,8 @@ class UsersController extends AppController
 
     public function logout()
     {
+        $this->viewBuilder()->setLayout('alert-card');
         $this->Flash->success('You are now logged out.');
-        return $this->redirect($this->Auth->logout());
+        //return $this->redirect($this->Auth->logout());
     }
 }

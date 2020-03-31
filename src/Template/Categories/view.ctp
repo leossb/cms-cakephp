@@ -66,6 +66,7 @@
                 <th scope="col"><?= __('Title') ?></th>
                 <th scope="col"><?= __('Slug') ?></th>
                 <th scope="col"><?= __('Body') ?></th>
+                <th scope="col"><?= __('Type') ?></th>
                 <th scope="col"><?= __('Published') ?></th>
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
@@ -79,6 +80,7 @@
                 <td><?= h($articles->title) ?></td>
                 <td><?= h($articles->slug) ?></td>
                 <td><?= h($articles->body) ?></td>
+                <td><?= h($articles->type) ?></td>
                 <td><?= h($articles->published) ?></td>
                 <td><?= h($articles->created) ?></td>
                 <td><?= h($articles->modified) ?></td>

@@ -12,6 +12,15 @@ use App\Controller\AppController;
  */
 class CategoriesController extends AppController
 {
+    public function initialize()
+    {
+        parent::initialize();
+        //$this->Auth->allow(['tags']);
+        $this->loadComponent('Paginator');
+        $this->loadComponent('Flash'); // Include the FlashComponent
+        $this->viewBuilder()->setLayout('admin');
+    }
+
     /**
      * Index method
      *
@@ -19,6 +28,7 @@ class CategoriesController extends AppController
      */
     public function index()
     {
+        $this->viewBuilder()->setLayout('admin');
         /*
         $this->paginate = [
             'contain' => ['ParentCategories'],

@@ -12,6 +12,14 @@ use App\Controller\AppController;
  */
 class PgsController extends AppController
 {
+    public function initialize()
+    {
+        parent::initialize();
+        //$this->Auth->allow(['tags']);
+        $this->loadComponent('Paginator');
+        $this->loadComponent('Flash'); // Include the FlashComponent
+        $this->viewBuilder()->setLayout('admin');
+    }
     /**
      * Index method
      *

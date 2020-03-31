@@ -4,35 +4,43 @@
  * @var \App\Model\Entity\Article $article
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $article->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $article->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Articles'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Tags'), ['controller' => 'Tags', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Tag'), ['controller' => 'Tags', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="articles form large-9 medium-8 columns content">
-    <?= $this->Form->create($article) ?>
-    <fieldset>
-        <legend><?= __('Edit Article') ?></legend>
-        <?php
-            echo $this->Form->control('user_id', ['type' => 'hidden']);
-            echo $this->Form->control('title');
-            echo $this->Form->control('body');
-            echo $this->Form->control('published');
-            //echo $this->Form->control('tags._ids', ['options' => $tags]);
-            echo $this->Form->control('tag_string', ['type' => 'text']);
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<style>
+    .checkbox label::before {
+        display: none !important;
+    }
+</style>
+<!-- Css -->
+<?= $this->Html->css('../libs/bootstrap-tagsinput/bootstrap-tagsinput.css', ['block' => 'cssTagsinput']) ?>
+<?= $this->Html->css('../libs/switchery/switchery.min.css', ['block' => 'cssSwitchery']) ?>
+<?= $this->Html->css('../libs/select2/select2.min.css', ['block' => 'cssSelect2']) ?>
+<?= $this->Html->css('../libs/bootstrap-select/bootstrap-select.min.css', ['block' => 'cssSelect']) ?>
+
+<!-- Script -->
+<?= $this->Html->script('../libs/switchery/switchery.min.js', ['block' => 'scriptSwitchery']) ?>
+<?= $this->Html->script('../libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js', ['block' => 'scriptTagsinput']) ?>
+<?= $this->Html->script('../libs/select2/select2.min.js', ['block' => 'scriptSelect2']) ?>
+<?= $this->Html->script('../libs/bootstrap-select/bootstrap-select.min.js', ['block' => 'scriptSelect']) ?>
+
+<!-- Form advanced init -->
+<?= $this->Html->script('pages/form-advanced.init.js', ['block' => 'scriptFormadvancedInit']) ?>
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card-box table-responsive">
+            <?= $this->Html->link(__('Back'), ['action' => 'index'],["class"=>"btn btn-outline-primary btn-rounded waves-light waves-effect width-md float-right"]) ?>
+            <h4 class="header-title"><b><?= __('Articles') ?></b></h4>
+            <p class="sub-header"><?= __('Edit') . ' ' . __('article') ?></p>
+            <?= $this->Form->create($article) ?>
+                <fieldset>
+                    <?= $this->Form->control('category_id',['class'=>'form-control mb-2', 'label'=>__('Category'), 'empty'=>__('Select')]); ?>
+                    <?=  $this->Form->control('title',['class'=>'form-control mb-2', 'label'=>__('Title')]); ?>
+                    <?=  $this->Form->control('body',['class'=>'form-control mb-2', 'label'=>__('Body')]); ?>
+                    <?=  $this->Form->control('published',['class'=>'checkbox-switchery', 'type'=>'checkbox', 'data-plugin'=>'switchery', 'data-color'=>'#5d6dc3']); ?>
+                    <?php //echo $this->Form->control('tags._ids', ['options' => $tags]); ?>
+                </fieldset>
+                <?= $this->Form->button(__('Submit'),['class'=>'clearfix mt-2 btn btn-gradient']) ?>
+            <?= $this->Form->end() ?>
+        </div>
+    </div>
 </div>
