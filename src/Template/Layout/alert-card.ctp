@@ -38,6 +38,7 @@ $cakeDescription = 'CMS';
                     <div class="col-md-8 col-lg-6 col-xl-5">
                         <div class="card bg-pattern">
                             <div class="card-body p-4">
+                                <?= $this->Flash->render() ?>
                                 <!-- ============================================================== -->
                                 <?= $this->fetch('content') ?>
                                 <!-- ============================================================== -->

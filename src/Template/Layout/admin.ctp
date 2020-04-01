@@ -144,7 +144,6 @@ $cakeDescription = 'CMS';
                         <ul class="metismenu" id="side-menu">
                             <li class="menu-title"><?= __('Navigation') ?></li>
                             <li><?= $this->Html->link('<i class="fe-airplay"></i><span>'.__('Dashboard').'</span>',['controller'=>'dashboard','action'=>'index'],['escape'=>false]) ?></li>
-
                             <li>
                                 <a href="javascript: void(0);">
                                     <i class="fe-bookmark"></i>
@@ -154,12 +153,25 @@ $cakeDescription = 'CMS';
                                 <ul class="nav-second-level" aria-expanded="false">
                                     <li><?= $this->Html->link(__('New').' '.__('Article'),['controller'=>'articles','action'=>'add'],['escape'=>false]) ?></li>
                                     <li><?= $this->Html->link(__('Articles').' '.__('List'),['controller'=>'articles','action'=>'index'],['escape'=>false]) ?></li>
-                                    <li><?= $this->Html->link(__('Categories'),['controller'=>'categories','action'=>'index'],['escape'=>false]) ?></li>
-                                    <li><?= $this->Html->link(__('Tags'),['controller'=>'tags','action'=>'index'],['escape'=>false]) ?></li>
                                     <li><?= $this->Html->link(__('Comments'),['controller'=>'comments','action'=>'index'],['escape'=>false]) ?></li>
                                 </ul>
                             </li>
+                            <li>
+                                <a href="javascript: void(0);">
+                                    <i class="fe-book"></i>
+                                    <span><?= __('Courses') ?></span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li><?= $this->Html->link(__('Courses').' '.__('List'),['controller'=>'courses','action'=>'index'],['escape'=>false]) ?></li>
+                                    <li><?= $this->Html->link(__('Lessons'),['controller'=>'lessons','action'=>'index'],['escape'=>false]) ?></li>
+                                    <li><?= $this->Html->link(__('New').' '.__('Lesson'),['controller'=>'lessons','action'=>'add'],['escape'=>false]) ?></li>
+                                    <li><?= $this->Html->link(__('Exams'),['controller'=>'exams','action'=>'index'],['escape'=>false]) ?></li>
+                                </ul>
+                            </li>
                             <li><?= $this->Html->link('<i class="fe-book-open"></i><span>'.__('Pages').'</span>',['controller'=>'pgs','action'=>'index'],['escape'=>false]) ?></li>
+                            <li><?= $this->Html->link('<i class="fe-plus-square"></i><span>'.__('Tags').'</span>',['controller'=>'tags','action'=>'index'],['escape'=>false]) ?></li>
+                            <li><?= $this->Html->link('<i class="fe-disc"></i><span>'.__('Categories').'</span>',['controller'=>'categories','action'=>'index'],['escape'=>false]) ?></li>
                             <li><?= $this->Html->link('<i class="fe-users"></i><span>'.__('Users').'</span>',['controller'=>'users','action'=>'index'],['escape'=>false]) ?></li>
                         </ul>
                     </div>
