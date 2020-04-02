@@ -78,8 +78,7 @@ class CategoriesTable extends Table
         $validator
             ->scalar('description')
             ->maxLength('description', 255)
-            ->requirePresence('description', 'create')
-            ->notEmptyString('description');
+            ->allowEmpty('description');
 
         return $validator;
     }

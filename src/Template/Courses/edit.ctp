@@ -36,10 +36,10 @@
             <?= $this->Form->create($course) ?>
                 <fieldset>
                     <?php
-                    echo $this->Form->control('name', ['class'=>'form-control mb-2', 'label'=>__('name')]);
-                    echo $this->Form->control('description', ['class'=>'form-control mb-2', 'label'=>__('description')]);
-                    echo $this->Form->control('cover', ['class'=>'form-control mb-2', 'label'=>__('cover')]);
-                    echo $this->Form->control('author_id', ['options' => $authors, 'class'=>'form-control mb-2', 'label'=>__('author_id')]);
+                    echo $this->Form->control('name', ['class'=>'form-control mb-2', 'label'=>__('Name')]);
+                    echo $this->Form->control('description', ['class'=>'form-control mb-2', 'label'=>__('Description')]);
+                    echo $this->Form->control('cover', ['class'=>'form-control mb-2', 'label'=>__('Cover')]);
+                    echo $this->Form->control('author_id', ['options' => $authors, 'class'=>'form-control mb-2', 'label'=>__('Author')]);
                     //echo $this->Form->control('tags._ids', ['options' => $tags, 'class'=>'form-control']);
                     ?>
                 </fieldset>

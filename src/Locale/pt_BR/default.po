@@ -1,0 +1,203 @@
+msgid "Sign in"
+msgstr "Entrar"
+
+msgid "Enter your email"
+msgstr "Entre com seu email"
+
+msgid "Enter your password"
+msgstr "Entre com sua senha"
+
+msgid "Remember me"
+msgstr "Lembrar-me"
+
+msgid "Forgot your password?"
+msgstr "Esqueceu sua senha?"
+
+msgid "Sign up"
+msgstr "Cadastre-se"
+
+msgid "Don\'t have an account?"
+msgstr "Não tem uma conta?"
+
+msgid "Password"
+msgstr "Senha"
+
+msgid "See You Again!"
+msgstr "Nos vemos em breve!"
+
+msgid "You are now successfully sign out. Back to"
+msgstr "Você foi deslogado com sucesso. Volte para"
+
+msgid "Clear All"
+msgstr "Limpar tudo"
+
+msgid "Notification"
+msgstr "Notificação"
+
+msgid "View all"
+msgstr "Exibir tudo"
+
+msgid "Welcome"
+msgstr "Bem-vindo"
+
+msgid "Account"
+msgstr "Conta"
+
+msgid "Change password"
+msgstr "Alterar senha"
+
+msgid "Logout"
+msgstr "Logout"
+
+msgid "Search"
+msgstr "Busca"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "Articles"
+msgstr "Artigos"
+
+msgid "Article"
+msgstr "Artigo"
+
+msgid "New"
+msgstr "Novo"
+
+msgid "List"
+msgstr "Lista"
+
+msgid "Comments"
+msgstr "Comentários"
+
+msgid "Comment"
+msgstr "Comentário"
+
+msgid "Courses"
+msgstr "Cursos"
+
+msgid "Course"
+msgstr "Curso"
+
+msgid "Lessons"
+msgstr "Aulas"
+
+msgid "Lesson"
+msgstr "Aula"
+
+msgid "Exams"
+msgstr "Testes"
+
+msgid "Exam"
+msgstr "Teste"
+
+msgid "Pages"
+msgstr "Páginas"
+
+msgid "Page"
+msgstr "Página"
+
+msgid "Tag"
+msgstr "Tag"
+
+msgid "Tags"
+msgstr "Tags"
+
+msgid "Categories"
+msgstr "Categorias"
+
+msgid "Category"
+msgstr "Categoria"
+
+msgid "Users"
+msgstr "Usuários"
+
+msgid "User"
+msgstr "Usuário"
+
+msgid "Developed by"
+msgstr "Desenvolvido por"
+
+msgid "Back"
+msgstr "Voltar"
+
+msgid "Add new"
+msgstr "Adicionar novo"
+
+msgid "Title"
+msgstr "Título"
+
+msgid "Body"
+msgstr "Corpo"
+
+msgid "Submit"
+msgstr "Enviar"
+
+msgid "Select"
+msgstr "Selecionar"
+
+msgid "Published"
+msgstr "Publicado"
+
+msgid "Created"
+msgstr "Criado"
+
+msgid "Modified"
+msgstr "Modificado"
+
+msgid "Actions"
+msgstr "Ações"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Delete"
+msgstr "Deletar"
+
+msgid "Are you sure you want to delete # {0}?"
+msgstr "Tem certeza que gostaria de deletar # {0}"
+
+msgid "Name"
+msgstr "Nome"
+
+msgid "Cover"
+msgstr "Capa"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Authors"
+msgstr "Autores"
+
+msgid "Description"
+msgstr "Descrição"
+
+msgid "New Category"
+msgstr "Nova Categoria"
+
+msgid "Add"
+msgstr "Adicionar"
+
+msgid "New Lesson"
+msgstr "Nova Aula"
+
+msgid "Topic"
+msgstr "Tópico"
+
+msgid "Topics"
+msgstr "Tópicos"
+
+msgid "New Page"
+msgstr "Nova Página"
+
+msgid "New Tag"
+msgstr "Nova Tag"
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""

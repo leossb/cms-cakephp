@@ -2,7 +2,7 @@
     <a href="javascript:void(0);">
         <span><?= $this->Html->image('admin/logo-dark.png',["alt"=>"logo recriarti", "height"=>"18"]) ?></span>
     </a>
-    <h5 class="text-uppercase text-center font-bold mt-4"><?= __('Sign In') ?></h5>
+    <h5 class="text-uppercase text-center font-bold mt-4"><?= __('Log out') ?></h5>
 </div>
 
 <div class="text-center">
@@ -22,7 +22,7 @@
     </div>
     <h4><?= __('See You Again!') ?></h4>
     <p class="text-muted font-14 mt-2 mb-0">
-        <?= ('You are now successfully sign out. Back to') ?>
+        <?= __('You are now successfully sign out. Back to') ?>
         <?= $this->Html->link('<strong>'.__('Sign in').'</strong>',['action'=>'login'],['class'=>'text-primary mr-1', 'escape'=>false]) ?>
     </p>
 </div>

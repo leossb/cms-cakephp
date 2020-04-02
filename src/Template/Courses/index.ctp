@@ -27,18 +27,18 @@
 <div class="row">
     <div class="col-12">
         <div class="card-box table-responsive">
-            <?= $this->Html->link(__('New Course'), ['action' => 'add'],["class"=>"btn btn-outline-primary btn-rounded waves-light waves-effect width-md float-right"]) ?>
+            <?= $this->Html->link(__('New').' '.__('Course'), ['action' => 'add'],["class"=>"btn btn-outline-primary btn-rounded waves-light waves-effect width-md float-right"]) ?>
             <h4 class="header-title"><b><?= __('Courses') ?></b></h4>
             <p class="sub-header"><?= __('Courses') ?> <?= __('List') ?></p>
             <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                 <tr>
                     <th scope="col"><?= __('id') ?></th>
-                    <th scope="col"><?= __('name') ?></th>
-                    <th scope="col"><?= __('cover') ?></th>
-                    <th scope="col"><?= __('author_id') ?></th>
-                    <th scope="col"><?= __('created') ?></th>
-                    <th scope="col"><?= __('modified') ?></th>
+                    <th scope="col"><?= __('Name') ?></th>
+                    <th scope="col"><?= __('Cover') ?></th>
+                    <th scope="col"><?= __('Author') ?></th>
+                    <th scope="col"><?= __('Created') ?></th>
+                    <th scope="col"><?= __('Modified') ?></th>
                     <th scope="col" class="actions"><?= __('Actions') ?></th>
                 </tr>
                 </thead>

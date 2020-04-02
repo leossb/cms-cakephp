@@ -36,7 +36,7 @@
             <?= $this->Form->create($tag) ?>
                 <fieldset>
                     <?php
-                                                    echo $this->Form->control('title', ['class'=>'form-control mb-2', 'label'=>__('title')]);
+                                                    echo $this->Form->control('title', ['class'=>'form-control mb-2', 'label'=>__('Title')]);
                                 echo $this->Form->control('articles._ids', ['options' => $articles, 'class'=>'form-control']);
                                         ?>
                 </fieldset>

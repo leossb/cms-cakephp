@@ -36,8 +36,8 @@
             <?= $this->Form->create($exam) ?>
                 <fieldset>
                     <?php
-                                                    echo $this->Form->control('name', ['class'=>'form-control mb-2', 'label'=>__('name')]);
-                                echo $this->Form->control('topic_id', ['options' => $topics, 'class'=>'form-control mb-2', 'label'=>__('topic_id')]);
+                    echo $this->Form->control('name', ['class'=>'form-control mb-2', 'label'=>__('Name')]);
+                    echo $this->Form->control('topic_id', ['options' => $topics, 'class'=>'form-control mb-2', 'label'=>__('Topic')]);
                     ?>
                 </fieldset>
                 <?= $this->Form->button(__('Submit'),['class'=>'clearfix mt-2 btn btn-gradient']) ?>

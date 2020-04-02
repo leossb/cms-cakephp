@@ -27,31 +27,31 @@
 <div class="row">
     <div class="col-12">
         <div class="card-box table-responsive">
-            <?= $this->Html->link(__('New Exam'), ['action' => 'add'],["class"=>"btn btn-outline-primary btn-rounded waves-light waves-effect width-md float-right"]) ?>
+            <?= $this->Html->link(__('New') . ' ' . __('Exam'), ['action' => 'add'],["class"=>"btn btn-outline-primary btn-rounded waves-light waves-effect width-md float-right"]) ?>
             <h4 class="header-title"><b><?= __('Exams') ?></b></h4>
             <p class="sub-header"><?= __('Exams') ?> <?= __('List') ?></p>
             <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                 <tr>
-                                            <th scope="col"><?= __('id') ?></th>
-                                            <th scope="col"><?= __('name') ?></th>
-                                            <th scope="col"><?= __('topic_id') ?></th>
-                                            <th scope="col"><?= __('created') ?></th>
-                                            <th scope="col"><?= __('modified') ?></th>
-                                        <th scope="col" class="actions"><?= __('Actions') ?></th>
+                    <th scope="col"><?= __('Id') ?></th>
+                    <th scope="col"><?= __('Name') ?></th>
+                    <th scope="col"><?= __('Topic') ?></th>
+                    <th scope="col"><?= __('Created') ?></th>
+                    <th scope="col"><?= __('Modified') ?></th>
+                    <th scope="col" class="actions"><?= __('Actions') ?></th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($exams as $exam): ?>
                 <tr>
-                                                                                                                                                                                                                                        <td><?= $this->Number->format($exam->id) ?></td>
-                                                                                                                                                                                                                                                                                            <td><?= h($exam->name) ?></td>
-                                                                                                                                                                                                                    <td><?= $exam->has('topic') ? $this->Html->link($exam->topic->name, ['controller' => 'Topics', 'action' => 'view', $exam->topic->id]) : '' ?></td>
-                                                                                                                                                                                                                                                                                                                    <td><?= h($exam->created) ?></td>
-                                                                                                                                                                                                                                                                                            <td><?= h($exam->modified) ?></td>
-                                                                                                                <td class="actions">
-                        <?= $this->Html->link('<i class="fas fa-pencil-alt"></i>', ['action' => 'edit', $exam->id], ['class'=>'btn btn-icon waves-effect waves-light btn-primary btn-sm','escape'=>false,'alt'=>__('Edit')]) ?>
-                        <?= $this->Form->postLink('<i class="fas fa-times"></i>', ['action' => 'delete', $exam->id], ['class'=>'btn btn-icon waves-effect waves-light btn-danger btn-sm','escape'=>false,'alt'=>__('Delete'),'confirm' => __('Are you sure you want to delete # {0}?', $exam->id)]) ?>
+                    <td><?= $this->Number->format($exam->id) ?></td>
+                    <td><?= h($exam->name) ?></td>
+                    <td><?= $exam->has('topic') ? $this->Html->link($exam->topic->name, ['controller' => 'Topics', 'action' => 'view', $exam->topic->id]) : '' ?></td>
+                    <td><?= h($exam->created) ?></td>
+                    <td><?= h($exam->modified) ?></td>
+                    <td class="actions">
+                    <?= $this->Html->link('<i class="fas fa-pencil-alt"></i>', ['action' => 'edit', $exam->id], ['class'=>'btn btn-icon waves-effect waves-light btn-primary btn-sm','escape'=>false,'alt'=>__('Edit'),'title'=>__('Edit')]) ?>
+                    <?= $this->Form->postLink('<i class="fas fa-times"></i>', ['action' => 'delete', $exam->id], ['class'=>'btn btn-icon waves-effect waves-light btn-danger btn-sm','escape'=>false,'alt'=>__('Delete'),'title'=>__('Delete'),'confirm' => __('Are you sure you want to delete # {0}?', $exam->id)]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

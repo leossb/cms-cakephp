@@ -33,10 +33,10 @@
             <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                 <tr>
-                                            <th scope="col"><?= __('id') ?></th>
-                                            <th scope="col"><?= __('title') ?></th>
-                                            <th scope="col"><?= __('created') ?></th>
-                                            <th scope="col"><?= __('modified') ?></th>
+                                            <th scope="col"><?= __('Id') ?></th>
+                                            <th scope="col"><?= __('Title') ?></th>
+                                            <th scope="col"><?= __('Created') ?></th>
+                                            <th scope="col"><?= __('Modified') ?></th>
                                         <th scope="col" class="actions"><?= __('Actions') ?></th>
                 </tr>
                 </thead>
@@ -48,8 +48,8 @@
                                                                                                                                                                                                                                         <td><?= h($tag->created) ?></td>
                                                                                                                                                                                                                                         <td><?= h($tag->modified) ?></td>
                                                                                                                 <td class="actions">
-                        <?= $this->Html->link('<i class="fas fa-pencil-alt"></i>', ['action' => 'edit', $tag->id], ['class'=>'btn btn-icon waves-effect waves-light btn-primary btn-sm','escape'=>false,'alt'=>__('Edit')]) ?>
-                        <?= $this->Form->postLink('<i class="fas fa-times"></i>', ['action' => 'delete', $tag->id], ['class'=>'btn btn-icon waves-effect waves-light btn-danger btn-sm','escape'=>false,'alt'=>__('Delete'),'confirm' => __('Are you sure you want to delete # {0}?', $tag->id)]) ?>
+                        <?= $this->Html->link('<i class="fas fa-pencil-alt"></i>', ['action' => 'edit', $tag->id], ['class'=>'btn btn-icon waves-effect waves-light btn-primary btn-sm','escape'=>false,'alt'=>__('Edit'),'title'=>__('Edit')]) ?>
+                        <?= $this->Form->postLink('<i class="fas fa-times"></i>', ['action' => 'delete', $tag->id], ['class'=>'btn btn-icon waves-effect waves-light btn-danger btn-sm','escape'=>false,'alt'=>__('Delete'),'title'=>__('Delete'),'confirm' => __('Are you sure you want to delete # {0}?', $tag->id)]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

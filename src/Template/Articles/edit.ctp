@@ -30,7 +30,7 @@
         <div class="card-box table-responsive">
             <?= $this->Html->link(__('Back'), ['action' => 'index'],["class"=>"btn btn-outline-primary btn-rounded waves-light waves-effect width-md float-right"]) ?>
             <h4 class="header-title"><b><?= __('Articles') ?></b></h4>
-            <p class="sub-header"><?= __('Edit') . ' ' . __('article') ?></p>
+            <p class="sub-header"><?= __('Edit') . ' ' . strtolower(__('Article')) ?></p>
             <?= $this->Form->create($article) ?>
                 <fieldset>
                     <?= $this->Form->control('category_id',['class'=>'form-control mb-2', 'label'=>__('Category'), 'empty'=>__('Select')]); ?>

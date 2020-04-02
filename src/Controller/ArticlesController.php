@@ -28,9 +28,9 @@ class ArticlesController extends AppController
      */
     public function index()
     {
-        /*$this->paginate = ['contain' => ['Users']];
-        $articles = $this->paginate($this->Articles);*/
-        $articles = $this->Articles->find('all');
+        $articles = $this->Articles->find('all',[
+            'contain'=>['Users']
+        ]);
         $this->set(compact('articles'));
     }
 
@@ -98,9 +98,10 @@ class ArticlesController extends AppController
             }
             $this->Flash->error(__('The article could not be saved. Please, try again.'));
         }
-        $users = $this->Articles->Users->find('list', ['limit' => 200]);
-        $tags = $this->Articles->Tags->find('list', ['limit' => 200]);
-        $this->set(compact('article', 'users', 'tags'));
+        $users = $this->Articles->Users->find('list');
+        $tags = $this->Articles->Tags->find('list');
+        $categories = $this->Articles->Categories->find('treeList');
+        $this->set(compact('article', 'users', 'tags', 'categories'));
     }
 
     /**

@@ -7,7 +7,7 @@
     <a href="index.html">
         <span><?= $this->Html->image('admin/logo-dark.png',["alt"=>"logo recriarti", "height"=>"18"]) ?></span>
     </a>
-    <h5 class="text-uppercase text-center font-bold mt-4"><?= __('Sign In') ?></h5>
+    <h5 class="text-uppercase text-center font-bold mt-4"><?= __('Sign in') ?></h5>
 </div>
 
 <?= $this->Form->create(null) ?>
@@ -15,7 +15,7 @@
         <?= $this->Form->control('email',['class'=>'form-control','required','placeholder'=>__('Enter your email'), 'type'=>'email']) ?>
     </div>
     <div class="form-group mb-3">
-         <?= $this->Form->control('password',['class'=>'form-control','required','placeholder'=>__('Enter your password'), 'type'=>'password']) ?>
+         <?= $this->Form->control('password',['class'=>'form-control','required','placeholder'=>__('Enter your password'), 'type'=>'password', 'label'=>__('Password')]) ?>
     </div>
     <div class="form-group mb-3">
         <div class="custom-control custom-checkbox checkbox-success float-left">

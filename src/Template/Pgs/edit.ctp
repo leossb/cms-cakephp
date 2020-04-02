@@ -36,12 +36,12 @@
             <?= $this->Form->create($pg) ?>
                 <fieldset>
                     <?php
-                                                    echo $this->Form->control('user_id', ['options' => $users, 'class'=>'form-control mb-2', 'label'=>__('user_id')]);
-                                echo $this->Form->control('parent_id', ['options' => $parentPgs, 'class'=>'form-control mb-2', 'label'=>__('parent_id')]);
-                                echo $this->Form->control('slug', ['class'=>'form-control mb-2', 'label'=>__('slug')]);
-                                echo $this->Form->control('name', ['class'=>'form-control mb-2', 'label'=>__('name')]);
-                                echo $this->Form->control('body', ['class'=>'form-control mb-2', 'label'=>__('body')]);
-                                echo $this->Form->control('published', ['class'=>'form-control mb-2', 'label'=>__('published')]);
+                                                    echo $this->Form->control('user_id', ['options' => $users, 'class'=>'form-control mb-2', 'label'=>__('User_id')]);
+                                echo $this->Form->control('parent_id', ['options' => $parentPgs, 'class'=>'form-control mb-2', 'label'=>__('Parent_id')]);
+                                echo $this->Form->control('slug', ['class'=>'form-control mb-2', 'label'=>__('Slug')]);
+                                echo $this->Form->control('name', ['class'=>'form-control mb-2', 'label'=>__('Name')]);
+                                echo $this->Form->control('body', ['class'=>'form-control mb-2', 'label'=>__('Body')]);
+                                echo $this->Form->control('published', ['class'=>'form-control mb-2', 'label'=>__('Published')]);
                     ?>
                 </fieldset>
                 <?= $this->Form->button(__('Submit'),['class'=>'clearfix mt-2 btn btn-gradient']) ?>

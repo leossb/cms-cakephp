@@ -33,29 +33,29 @@
             <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                 <tr>
-                                            <th scope="col"><?= __('id') ?></th>
-                                            <th scope="col"><?= __('title') ?></th>
-                                            <th scope="col"><?= __('video') ?></th>
-                                            <th scope="col"><?= __('cover') ?></th>
-                                            <th scope="col"><?= __('topic_id') ?></th>
-                                            <th scope="col"><?= __('created') ?></th>
-                                            <th scope="col"><?= __('modified') ?></th>
-                                        <th scope="col" class="actions"><?= __('Actions') ?></th>
+                    <th scope="col"><?= __('Id') ?></th>
+                    <th scope="col"><?= __('Title') ?></th>
+                    <th scope="col"><?= __('Video') ?></th>
+                    <th scope="col"><?= __('Cover') ?></th>
+                    <th scope="col"><?= __('Topic_id') ?></th>
+                    <th scope="col"><?= __('Created') ?></th>
+                    <th scope="col"><?= __('Modified') ?></th>
+                    <th scope="col" class="actions"><?= __('Actions') ?></th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($lessons as $lesson): ?>
                 <tr>
-                                                                                                                                                                                                                                        <td><?= $this->Number->format($lesson->id) ?></td>
-                                                                                                                                                                                                                                                                                            <td><?= h($lesson->title) ?></td>
-                                                                                                                                                                                                                                                                                            <td><?= h($lesson->video) ?></td>
-                                                                                                                                                                                                                                                                                            <td><?= h($lesson->cover) ?></td>
-                                                                                                                                                                                                                    <td><?= $lesson->has('topic') ? $this->Html->link($lesson->topic->name, ['controller' => 'Topics', 'action' => 'view', $lesson->topic->id]) : '' ?></td>
-                                                                                                                                                                                                                                                                                                                    <td><?= h($lesson->created) ?></td>
-                                                                                                                                                                                                                                                                                            <td><?= h($lesson->modified) ?></td>
-                                                                                                                <td class="actions">
-                        <?= $this->Html->link('<i class="fas fa-pencil-alt"></i>', ['action' => 'edit', $lesson->id], ['class'=>'btn btn-icon waves-effect waves-light btn-primary btn-sm','escape'=>false,'alt'=>__('Edit')]) ?>
-                        <?= $this->Form->postLink('<i class="fas fa-times"></i>', ['action' => 'delete', $lesson->id], ['class'=>'btn btn-icon waves-effect waves-light btn-danger btn-sm','escape'=>false,'alt'=>__('Delete'),'confirm' => __('Are you sure you want to delete # {0}?', $lesson->id)]) ?>
+                    <td><?= $this->Number->format($lesson->id) ?></td>
+                    <td><?= h($lesson->title) ?></td>
+                    <td><?= h($lesson->video) ?></td>
+                    <td><?= h($lesson->cover) ?></td>
+                    <td><?= $lesson->has('topic') ? $this->Html->link($lesson->topic->name, ['controller' => 'Topics', 'action' => 'view', $lesson->topic->id]) : '' ?></td>
+                    <td><?= h($lesson->created) ?></td>
+                    <td><?= h($lesson->modified) ?></td>
+                    <td class="actions">
+                    <?= $this->Html->link('<i class="fas fa-pencil-alt"></i>', ['action' => 'edit', $lesson->id], ['class'=>'btn btn-icon waves-effect waves-light btn-primary btn-sm','escape'=>false,'alt'=>__('Edit'),'title'=>__('Edit')]) ?>
+                    <?= $this->Form->postLink('<i class="fas fa-times"></i>', ['action' => 'delete', $lesson->id], ['class'=>'btn btn-icon waves-effect waves-light btn-danger btn-sm','escape'=>false,'alt'=>__('Delete'),'title'=>__('Delete'),'confirm' => __('Are you sure you want to delete # {0}?', $lesson->id)]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

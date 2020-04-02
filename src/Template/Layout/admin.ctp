@@ -124,7 +124,7 @@ $cakeDescription = 'CMS';
                         <form class="app-search">
                             <div class="app-search-box">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search...">
+                                    <input type="text" class="form-control" placeholder="<?= __('Search') ?>...">
                                     <div class="input-group-append">
                                         <button class="btn" type="submit">
                                             <i class="fe-search"></i>
@@ -142,7 +142,7 @@ $cakeDescription = 'CMS';
                 <div class="slimscroll-menu">
                     <div id="sidebar-menu">
                         <ul class="metismenu" id="side-menu">
-                            <li class="menu-title"><?= __('Navigation') ?></li>
+                            <li class="menu-title"><?= __('Menu') ?></li>
                             <li><?= $this->Html->link('<i class="fe-airplay"></i><span>'.__('Dashboard').'</span>',['controller'=>'dashboard','action'=>'index'],['escape'=>false]) ?></li>
                             <li>
                                 <a href="javascript: void(0);">

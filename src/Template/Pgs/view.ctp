@@ -24,7 +24,7 @@
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('User') ?></th>
-            <td><?= $pg->has('user') ? $this->Html->link($pg->user->id, ['controller' => 'Users', 'action' => 'view', $pg->user->id]) : '' ?></td>
+            <td><?= $pg->has('user') ? $this->Html->link($pg->user->name, ['controller' => 'Users', 'action' => 'view', $pg->user->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Parent Pg') ?></th>

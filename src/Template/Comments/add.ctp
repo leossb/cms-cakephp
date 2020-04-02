@@ -36,9 +36,9 @@
             <?= $this->Form->create($comment) ?>
                 <fieldset>
                     <?php
-                                                    echo $this->Form->control('user_id', ['options' => $users, 'class'=>'form-control mb-2', 'label'=>__('user_id')]);
-                                echo $this->Form->control('article_id', ['options' => $articles, 'class'=>'form-control mb-2', 'label'=>__('article_id')]);
-                                echo $this->Form->control('descrition', ['class'=>'form-control mb-2', 'label'=>__('descrition')]);
+                        echo $this->Form->control('user_id', ['options' => $users, 'class'=>'form-control mb-2', 'label'=>__('User')]);
+                        echo $this->Form->control('article_id', ['options' => $articles, 'class'=>'form-control mb-2', 'label'=>__('Article')]);
+                        echo $this->Form->control('description', ['class'=>'form-control mb-2', 'label'=>__('Description')]);
                     ?>
                 </fieldset>
                 <?= $this->Form->button(__('Submit'),['class'=>'clearfix mt-2 btn btn-gradient']) ?>

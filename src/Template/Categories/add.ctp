@@ -36,9 +36,9 @@
             <?= $this->Form->create($category) ?>
                 <fieldset>
                     <?php
-                                                    echo $this->Form->control('parent_id', ['options' => $parentCategories, 'class'=>'form-control mb-2', 'label'=>__('parent_id')]);
-                                echo $this->Form->control('name', ['class'=>'form-control mb-2', 'label'=>__('name')]);
-                                echo $this->Form->control('description', ['class'=>'form-control mb-2', 'label'=>__('description')]);
+                    echo $this->Form->control('parent_id', ['options' => $parentCategories, 'class'=>'form-control mb-2', 'label'=>__('Parent_id'), 'empty'=>[null=>'Selecione']]);
+                    echo $this->Form->control('name', ['class'=>'form-control mb-2', 'label'=>__('Name')]);
+                    echo $this->Form->control('description', ['class'=>'form-control mb-2', 'label'=>__('Description')]);
                     ?>
                 </fieldset>
                 <?= $this->Form->button(__('Submit'),['class'=>'clearfix mt-2 btn btn-gradient']) ?>

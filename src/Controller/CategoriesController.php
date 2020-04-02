@@ -29,14 +29,11 @@ class CategoriesController extends AppController
     public function index()
     {
         $this->viewBuilder()->setLayout('admin');
-        /*
-        $this->paginate = [
-            'contain' => ['ParentCategories'],
-        ];
-        $categories = $this->paginate($this->Categories);
-        */
 
-        $categories = $this->Categories->find()->order(['lft' => 'ASC']);
+        $categories = $this->Categories->find('all',[
+            'contain' => ['ParentCategories', 'ChildCategories'],
+            'order'=> 'categories.lft'
+        ]);
         $this->set(compact('categories'));
     }
 

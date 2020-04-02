@@ -29,7 +29,7 @@ class Comment extends Entity
     protected $_accessible = [
         'user_id' => true,
         'article_id' => true,
-        'descrition' => true,
+        'description' => true,
         'created' => true,
         'modified' => true,
         'user' => true,

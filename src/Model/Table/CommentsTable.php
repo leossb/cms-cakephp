@@ -64,9 +64,9 @@ class CommentsTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->scalar('descrition')
-            ->requirePresence('descrition', 'create')
-            ->notEmptyString('descrition');
+            ->scalar('description')
+            ->requirePresence('description', 'create')
+            ->notEmptyString('description');
 
         return $validator;
     }

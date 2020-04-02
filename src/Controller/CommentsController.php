@@ -27,10 +27,9 @@ class CommentsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Users'],
-        ];
-        $comments = $this->paginate($this->Comments);
+        $comments = $this->Comments->find('all',[
+            'contain' => ['Users','Articles'],
+        ]);
 
         $this->set(compact('comments'));
     }
@@ -68,8 +67,9 @@ class CommentsController extends AppController
             }
             $this->Flash->error(__('The comment could not be saved. Please, try again.'));
         }
-        $users = $this->Comments->Users->find('list', ['limit' => 200]);
-        $this->set(compact('comment', 'users'));
+        $users = $this->Comments->Users->find('list');
+        $articles = $this->Comments->Articles->find('list');
+        $this->set(compact('comment', 'users','articles'));
     }
 
     /**
@@ -93,8 +93,9 @@ class CommentsController extends AppController
             }
             $this->Flash->error(__('The comment could not be saved. Please, try again.'));
         }
-        $users = $this->Comments->Users->find('list', ['limit' => 200]);
-        $this->set(compact('comment', 'users'));
+        $users = $this->Comments->Users->find('list');
+        $articles = $this->Comments->Articles->find('list');
+        $this->set(compact('comment', 'users', 'articles'));
     }
 
     /**
