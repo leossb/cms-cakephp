@@ -11,12 +11,12 @@
     <h5 class="text-uppercase text-center font-bold mt-4"><?= __('Change password') ?></h5>
 </div>
 
-<form>
+<?= $this->Form->create(null) ?>
     <div class="form-group mb-3">
          <?= $this->Form->control('password',['class'=>'form-control','required','placeholder'=>__('Enter your new password'), 'type'=>'password']) ?>
     </div>
     <div class="form-group mb-3">
-         <?= $this->Form->control('password2',['class'=>'form-control','required','placeholder'=>__('Repeat your new password'), 'type'=>'password']) ?>
+         <?= $this->Form->control(__('Repeat').' '.__('password'),['class'=>'form-control','required','placeholder'=>__('Repeat your new password'), 'type'=>'password']) ?>
     </div>
 
     <div class="clearfix"></div>
@@ -24,10 +24,10 @@
     <div class="form-group mt-4 mb-0 text-center">
         <button class="btn btn-gradient btn-block" type="submit"><?= __('Send') ?></button>
     </div>
-</form>
+<?= $this->Form->end() ?>
 
 <div class="row mt-4">
     <div class="col-sm-12 text-center">
-        <p class="text-muted mb-0"><?= $this->Html->link('<strong>'.__('Back').'</strong>',['action'=>'login'],['class'=>'text-dark ml-1','escape'=>false]) ?></p>
+        <p class="text-muted mb-0"><?= $this->Html->link('<strong>'.__('Back').'</strong>','javascript:history.back(1);',['class'=>'text-dark ml-1','escape'=>false]) ?></p>
     </div>
 </div>

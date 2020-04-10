@@ -12,15 +12,15 @@ use Cake\ORM\Entity;
  * @property string $slug
  * @property int $lft
  * @property int $rght
- * @property int $name
- * @property int|null $body
- * @property int|null $published
+ * @property string $name
+ * @property string|null $body
+ * @property bool|null $published
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\User $user
- * @property \App\Model\Entity\ParentPg $parent_pg
- * @property \App\Model\Entity\ChildPg[] $child_pgs
+ * @property \App\Model\Entity\Pg $parent_pg
+ * @property \App\Model\Entity\Pg[] $child_pgs
  */
 class Pg extends Entity
 {
@@ -34,18 +34,8 @@ class Pg extends Entity
      * @var array
      */
     protected $_accessible = [
-        'user_id' => true,
-        'parent_id' => true,
-        'slug' => true,
-        'lft' => true,
-        'rght' => true,
-        'name' => true,
-        'body' => true,
-        'published' => true,
-        'created' => true,
-        'modified' => true,
-        'user' => true,
-        'parent_pg' => true,
-        'child_pgs' => true,
+        '*' => true,
+        'id' => false,
+        'slug' => false
     ];
 }

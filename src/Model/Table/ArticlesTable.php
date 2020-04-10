@@ -33,7 +33,7 @@ class ArticlesTable extends Table
         }
 
         if ($entity->isNew() && !$entity->slug) {
-            $sluggedTitle = Text::slug($entity->title);
+            $sluggedTitle = Text::slug(strtolower($entity->title));
             $entity->slug = substr($sluggedTitle, 0, 191); // trim slug to maximum length defined in schema
         }
     }

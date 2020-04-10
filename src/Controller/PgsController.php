@@ -62,14 +62,13 @@ class PgsController extends AppController
         if ($this->request->is('post')) {
             $pg = $this->Pgs->patchEntity($pg, $this->request->getData());
             if ($this->Pgs->save($pg)) {
-                $this->Flash->success(__('The pg has been saved.'));
-
+                $this->Flash->success(__('The page has been saved.'));
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The pg could not be saved. Please, try again.'));
+            $this->Flash->error(__('The page could not be saved. Please, try again.'));
         }
-        $users = $this->Pgs->Users->find('list', ['limit' => 200]);
-        $parentPgs = $this->Pgs->ParentPgs->find('list', ['limit' => 200]);
+        $users = $this->Pgs->Users->find('list');
+        $parentPgs = $this->Pgs->ParentPgs->find('treeList');
         $this->set(compact('pg', 'users', 'parentPgs'));
     }
 
@@ -88,14 +87,14 @@ class PgsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $pg = $this->Pgs->patchEntity($pg, $this->request->getData());
             if ($this->Pgs->save($pg)) {
-                $this->Flash->success(__('The pg has been saved.'));
+                $this->Flash->success(__('The page has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The pg could not be saved. Please, try again.'));
+            $this->Flash->error(__('The page could not be saved. Please, try again.'));
         }
-        $users = $this->Pgs->Users->find('list', ['limit' => 200]);
-        $parentPgs = $this->Pgs->ParentPgs->find('list', ['limit' => 200]);
+        $users = $this->Pgs->Users->find('list');
+        $parentPgs = $this->Pgs->ParentPgs->find('treeList');
         $this->set(compact('pg', 'users', 'parentPgs'));
     }
 
@@ -111,9 +110,9 @@ class PgsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $pg = $this->Pgs->get($id);
         if ($this->Pgs->delete($pg)) {
-            $this->Flash->success(__('The pg has been deleted.'));
+            $this->Flash->success(__('The page has been deleted.'));
         } else {
-            $this->Flash->error(__('The pg could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The page could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

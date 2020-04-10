@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Routing\Router;
+use Cake\Mailer\Email;
 
 /**
  * Users Controller
@@ -15,7 +17,7 @@ class UsersController extends AppController
     public function initialize()
     {
         parent::initialize();
-        $this->Auth->allow(['logout', 'add', 'forgot']);
+        $this->Auth->allow(['logout', 'add', 'forgot', 'reset']);
         $this->loadComponent('Paginator');
         $this->loadComponent('Flash'); // Include the FlashComponent
         $this->viewBuilder()->setLayout('admin');
@@ -60,6 +62,13 @@ class UsersController extends AppController
         if ($this->request->is('post'))
         {
             $user = $this->Users->patchEntity($user, $this->request->getData());
+            if (!empty($this->request->getData('avatar')))
+            {
+                $path = './img/upload/users/';
+                $file = $this->upload_file_transfer('avatar', 'sim', 'jpg,jpeg,JPEG,JPG,png,PNG',$path, 'nao', '200000', 'nao');
+                $this->resizeImage($file,$path,$path,1200,''); // Arquivo, origem, destino, largura, pre
+                $user->avatar = $file;
+            }
 
             $uniquecode = substr(md5(microtime()),0,10); //generate random string
             $randomKey = substr(md5(microtime()),0,10);
@@ -67,39 +76,39 @@ class UsersController extends AppController
 
             if ($this->Users->save($user))
             {
-                $site_description = 'CMS Recriarti';
-                $site_email = 'suporte@recriarti.com.br';
-                $aLink = Router::url(array("controller"=>"Users","action"=>"activate", $uniquecode, $randomKey),true);
-                $subject = '['.$site_description.'] VERIFIQUE SUA CONTA';
-                $sender_email = $site_email;
-                $sender_name = $site_description;
-                $to_email = $user->email;
-                $to_name = $user->name;
+                // Caso usuário escolha avisar o novo usuário por email
+                if ($this->request->getData('send') == 1)
+                {
+                    $site_description = 'CMS Recriarti';
+                    $site_email = 'suporte@recriarti.com.br';
+                    $aLink = Router::url(array("controller"=>"Users","action"=>"activate", $uniquecode, $randomKey),true);
+                    $subject = '['.$site_description.'] VERIFIQUE SUA CONTA';
+                    $sender_email = $site_email;
+                    $sender_name = $site_description;
+                    $to_email = $user->email;
+                    $to_name = $user->name;
 
-                $message = '<h1>Olá '.$user->name.', obrigado por se cadastrar na nossa plataforma.</h1>
-                <p>Por favor, para confirmar seu cadastro e liberar seu acesso a plataforma, clique no link abaixo ou copie e cole no seu navegador:</p>
-                <p>Link de verificação: '.$aLink.'</p>
-                <p>Qualquer dúvida ou dificuldade, por favor, entre em contato através do email '.$site_email.'.</p>
-                <p>Um grande abraço,<br>Equipe '.$site_description.'</p>
-                <hr>
-                <p>Caso você não tenha se cadastrado na nossa plataforma ou desconheça o teor deste email, por favor desconsiere-o.</p>
-                <p>Essa é uma mensagem automática. Por favor, não responda a este email.</p>';
+                    $message = '<h1>Olá '.$user->name.', obrigado por se cadastrar na nossa plataforma.</h1>
+                    <p>Por favor, para confirmar seu cadastro e liberar seu acesso a plataforma, clique no link abaixo ou copie e cole no seu navegador:</p>
+                    <p>Link de verificação: '.$aLink.'</p>
+                    <p>Qualquer dúvida ou dificuldade, por favor, entre em contato através do email '.$site_email.'.</p>
+                    <p>Um grande abraço,<br>Equipe '.$site_description.'</p>
+                    <hr>
+                    <p>Caso você não tenha se cadastrado na nossa plataforma ou desconheça o teor deste email, por favor desconsiere-o.</p>
+                    <p>Essa é uma mensagem automática. Por favor, não responda a este email.</p>';
 
-                $mail = new Email();
-                $mail->setEmailFormat('html');
-                $mail->setProfile(['from' => 'leossb@gmail.com', 'transport' => 'gmail']);
-                $mail->setSender($sender_email, $sender_name);
-                $mail->setReplyTo($sender_email);
-                $mail->setSubject($subject);
-                $mail->setTo($to_email, $to_name);
-
-                if($mail->send($message)){
-                    $this->Flash->success(__('The user has been saved.'));
-                    return $this->redirect(['action' => 'index']);
-                } else {
-                    $this->Flash->success(__('The user could not be saved. Please, try again.'));
-                    return $this->redirect(['controller'=>'Users','action'=>'login']);
+                    $mail = new Email();
+                    $mail->setEmailFormat('html');
+                    $mail->setProfile(['from' => 'leossb@gmail.com', 'transport' => 'gmail']);
+                    $mail->setSender($sender_email, $sender_name);
+                    $mail->setReplyTo($sender_email);
+                    $mail->setSubject($subject);
+                    $mail->setTo($to_email, $to_name);
+                    $mail->send($message);
                 }
+
+                $this->Flash->success(__('The user has been saved.'));
+                return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
@@ -116,11 +125,22 @@ class UsersController extends AppController
     public function edit($id = null)
     {
         $user = $this->Users->get($id);
-        if ($this->request->is(['patch', 'post', 'put'])) {
+        $actualImage = $user->avatar;
+        if ($this->request->is(['patch', 'post', 'put']))
+        {
             $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
-                return $this->redirect(['action' => 'index']);
+            if ($actualImage != $this->request->getData('avatar') && !empty($this->request->getData('avatar')))
+            {
+                $path = './img/upload/users/';
+                $file = $this->upload_file_transfer('avatar', 'sim', 'jpg,jpeg,JPEG,JPG,png,PNG', $path, 'nao', '200000', 'nao');
+                $this->resizeImage($file,$path,$path,1200,''); // Arquivo, origem, destino, largura, pre
+                $this->resizeImage($file,$path,$path,300,'tb_'); // Arquivo, origem, destino, largura, pre
+                $user->avatar = $file;
+            }
+            if ($this->Users->save($user))
+            {
+                $this->Flash->success(__('The user has been updated.'));
+                return $this->redirect(['action' => 'edit', $id]);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
@@ -145,6 +165,31 @@ class UsersController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * Delete method
+     *
+     * @param string|null $id User id.
+     * @return \Cake\Http\Response|null Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function deleteImage($id)
+    {
+        //$this->request->allowMethod(['post', 'delete']);
+        $user = $this->Users->get($id);
+        $img = $user->avatar;
+        $user->avatar = NULL;
+
+        if ($this->Users->save($user))
+        {
+            unlink('img/upload/users/'.$img);
+            $this->Flash->success(__('The image user has been deleted.'));
+        }
+        else
+            $this->Flash->error(__('The image user could not be deleted. Please, try again.'));
+
+        return $this->redirect(['action' => 'edit', $id]);
     }
 
     public function login()
@@ -207,9 +252,7 @@ class UsersController extends AppController
                 $user = $users->first();
 
                 if (is_null($user))
-                {
                     $this->Flash->error(__('This email address does not exist. Please, try again or create a new account.'));
-                }
                 else
                 {
                     $passkey = uniqid();
@@ -231,7 +274,7 @@ class UsersController extends AppController
     {
         $site_description = 'CMS Recriarti';
         $site_email = 'suporte@recriarti.com.br';
-        $aLink = Router::url(array("controller"=>"Users","action"=>"activate", $uniquecode, $randomKey),true);
+        //$aLink = Router::url(array("controller"=>"Users","action"=>"activate", $uniquecode, $randomKey),true);
         $subject = '['.$site_description.'] Recuperação de Senha';
         $sender_email = $site_email;
         $sender_name = $site_description;
@@ -256,12 +299,15 @@ class UsersController extends AppController
         $mail->setSubject($subject);
         $mail->setTo($email, $name);
         if($mail->send($message))
-            $this->Flash->success(__('We have send an email with the password recovery.'));
+            $this->Flash->success(__('We have send an email with the password recovery. Please, verify your spam box.'));
         else
             $this->Flash->error(__('Email does not sent.') . $mail->smtpError,['key' => 'contato']);
     }
 
-    public function reset($passkey = null) {
+    public function reset($passkey = null)
+    {
+        $this->viewBuilder()->setLayout('alert-card');
+
         if ($passkey) {
             $query = $this->Users->find('all', ['conditions' => ['passkey' => $passkey, 'timeout >' => time()]]);
             $user = $query->first();
@@ -271,7 +317,7 @@ class UsersController extends AppController
                     $user = $this->Users->patchEntity($user, $this->request->getData());
                     $user->passkey = null;
                     $user->timeout = null;
-                    $user->password = $this->_setPassword($user->password);
+                    //$user->password = $this->_setPassword($user->password);
                     if ($this->Users->save($user)) {
                         $this->Flash->set(__('Your password was updated successfully. Please sign in.'));
                         return $this->redirect(array('action' => 'login'));
@@ -295,33 +341,39 @@ class UsersController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function changePassword()
+    public function changePassword($id = null)
     {
         $this->viewBuilder()->setLayout('alert-card');
 
         $user_logged = $this->Auth->user();
 
-        $user = $this->Users->newEntity();
+        if ($user_logged['role'] == 'admin' && !is_null($id))
+            $user = $this->Users->get($id);
+        else
+            $user = $this->Users->get($user_logged['id']);
+
         if ($this->request->is('post'))
         {
             if ($this->request->getData('password') != $this->request->getData('password2'))
-            {
                 $this->Flash->error(__('The passwords does not match. Please, try again.'));
-            }
             else
             {
-                $password = $this->request->getData('password');
-                $user_id = $user_logged['id'];
-                $user = $this->Users->get($user_id);
-                $user->password = $this->_setPassword($password);
+                $user = $this->Users->patchEntity($user, $this->request->getData());
                 if ($this->Users->save($user))
-                {
                     $this->Flash->success(__('Password updated successfully'));
-                    return ($user_logged['role'] == 'admin') ? $this->redirect(['action'=>'index']) : $this->redirect(['controller'=>'Pages','action'=>'display','index']);
-                }
+                else
+                    $this->Flash->error(__('Password does not be updated'));
+
+                return ($user_logged['role'] == 'admin') ? $this->redirect(['action'=>'index']) : $this->redirect(['controller'=>'Pages','action'=>'display','index']);
             }
         }
 
         $this->set(compact('user'));
+    }
+
+    public function cropper($image)
+    {
+        $path = 'upload/users/';
+        $this->set(compact('image','path'));
     }
 }

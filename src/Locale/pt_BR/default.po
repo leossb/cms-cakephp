@@ -196,8 +196,84 @@ msgstr "Nova Página"
 msgid "New Tag"
 msgstr "Nova Tag"
 
+msgid "Role"
+msgstr "Perfil"
+
+msgid "Photo"
+msgstr "Foto"
+
+msgid "Image"
+msgstr "Imagem"
+
+msgid "File"
+msgstr "Arquivo"
+
+msgid "Send"
+msgstr "Enviar"
+
+msgid "Enter your new password"
+msgstr "Entre com sua nova senha"
+
+msgid "Repeat your new password"
+msgstr "Repita sua nova senha"
+
+msgid "Repeat"
+msgstr "Repita"
+
+msgid "Recovery"
+msgstr "Recuperar"
+
+msgid "Insert your email account to receive an email with the instructions to recovery"
+msgstr "Informe seu email de cadastro para receber um email com as instruções de recuperação"
+
+msgid "This email address does not exist. Please, try again or create a new account."
+msgstr "Este endereço de email não existe. Por favor, tente novamente ou crie uma nova conta."
+
+msgid "We have send an email with the password recovery. Please, verify your spam box."
+msgstr "Nós enviamos um email com a recuperação de senha. Por favor, verifique sua caixa de spam."
+
+msgid "Email does not sent."
+msgstr "Email não enviado."
+
+msgid "Your password was updated successfully. Please sign in."
+msgstr "Sua senha foi atualizada com sucesso. Por favor entre."
+
+msgid "Password could not be saved. Please try again."
+msgstr "Senha não pode ser salva. Por favor, tente novamente."
+
+msgid "Keypass invalid or expired. Please, verify your email or try again."
+msgstr "Chave de acesso inválida ou expirada. Por favor, verifique seu email ou tente novamente."
+
+msgid "The passwords does not match. Please, try again."
+msgstr "As senhas não combinam. Por favor, tente novamente."
+
+msgid "Password updated successfully"
+msgstr "Senha atualizada com sucesso"
+
+msgid "Password does not be updated"
+msgstr "Senha não pode ser atualizada"
+
+msgid "Register"
+msgstr "Cadastre"
+
+msgid "new password"
+msgstr "nova senha"
+
+msgid "Choose your new password"
+msgstr "Escolha sua nova senha"
+
+msgid "You are now logged out."
+msgstr "Você está deslogado agora."
+
 msgid ""
 msgstr ""
 
 msgid ""
 msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+

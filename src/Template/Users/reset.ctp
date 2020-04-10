@@ -4,29 +4,22 @@
  * @var \App\Model\Entity\User $user
  */
 ?>
-<div class="container h-100 d-flex align-items-center py-5">
-    <div class="row w-100 m-auto">
-        <div class="col-12 col-md-6 col-xl-4 m-auto">
-            <?= $this->Form->create(null,['url'=>['controller'=>'Users','action'=>'reset',$user->passkey]]) ?>
-                <h4 class="mb-3">Cadastrar nova senha</h4>
-                <div class="row">
-                    <div class="col-12 mb-3">
-                        <label for="password">Senha</label>
-                        <?= $this->Form->control('password',['class'=>'form-control', 'label'=>false, 'type'=>'password']); ?>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 mb-3">
-                        <label for="password2">Confirmar Senha</label>
-                        <?= $this->Form->control('password2',['class'=>'form-control', 'label'=>false, 'type'=>'password']); ?>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 pt-3">
-                        <?= $this->Form->button(__('Enviar'),['class'=>'btn btn-primary btn-lg btn-block']) ?>
-                    </div>
-                </div>
-            <?= $this->Form->end() ?>
-        </div>
-    </div>
+<div class="text-center w-75 m-auto">
+    <a href="index.html">
+        <span><?= $this->Html->image('admin/logo-dark.png',["alt"=>"logo recriarti", "height"=>"18"]) ?></span>
+    </a>
+    <h5 class="text-uppercase text-center font-bold mt-4"><?= __('Register').' '.__('new password') ?></h5>
+    <p><?= __('Choose your new password') ?></p>
 </div>
+<?= $this->Form->create(null,['url'=>['controller'=>'Users','action'=>'reset',$user->passkey]]) ?>
+    <div class="form-group mb-3">
+        <?= $this->Form->control('password',['class'=>'form-control', 'placeholder'=>__('Enter your new password'), 'type'=>'password']); ?>
+    </div>
+    <div class="form-group mb-3">
+        <?= $this->Form->control(__('Repeat').' '.__('password'),['class'=>'form-control', 'placeholder'=>__('Repeat your new password'), 'type'=>'password']); ?>
+    </div>
+    <div class="clearfix"></div>
+    <div class="form-group mt-4 mb-0 text-center">
+        <button class="btn btn-gradient btn-block" type="submit"><?= __('Send') ?></button>
+    </div>
+<?= $this->Form->end() ?>

@@ -36,10 +36,11 @@
             <?= $this->Form->create($user) ?>
                 <fieldset>
                     <?php
-                                                    echo $this->Form->control('email', ['class'=>'form-control mb-2', 'label'=>__('email')]);
-                                echo $this->Form->control('password', ['class'=>'form-control mb-2', 'label'=>__('password')]);
-                                echo $this->Form->control('name', ['class'=>'form-control mb-2', 'label'=>__('name')]);
-                                echo $this->Form->control('role', ['class'=>'form-control mb-2', 'label'=>__('role')]);
+                    echo $this->Form->control('email', ['class'=>'form-control mb-2', 'label'=>__('email')]);
+                    echo $this->Form->control('password', ['class'=>'form-control mb-2', 'label'=>__('password')]);
+                    echo $this->Form->control('name', ['class'=>'form-control mb-2', 'label'=>__('name')]);
+                    echo $this->Form->control('role', ['class'=>'form-control mb-2', 'label'=>__('role'), 'options'=>['admin','author']]);
+                    echo $this->Form->control('avatar', ['class'=>'form-control mb-2', 'label'=>__('foto'), 'type'=>'file']);
                     ?>
                 </fieldset>
                 <?= $this->Form->button(__('Submit'),['class'=>'clearfix mt-2 btn btn-gradient']) ?>

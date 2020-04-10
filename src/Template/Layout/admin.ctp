@@ -32,6 +32,7 @@ $cakeDescription = 'CMS';
         <?= $this->fetch('cssSwitchery') ?> <!-- Switchery block -->
         <?= $this->fetch('cssSelect2') ?>   <!-- Select2 block -->
         <?= $this->fetch('cssSelect') ?>    <!-- Select block -->
+        <?= $this->fetch('cssCropper') ?>    <!-- Cropper block -->
 
         <!-- Required css -->
         <?= $this->Html->css('bootstrap.min.css') ?>
@@ -44,6 +45,7 @@ $cakeDescription = 'CMS';
             <!-- Top -->
             <div class="navbar-custom">
                 <ul class="list-unstyled topnav-menu float-right mb-0">
+                    <!--
                     <li class="dropdown d-none d-lg-block">
                         <a class="nav-link dropdown-toggle mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                             <?= $this->Html->image('admin/flags/us.jpg',["alt"=>"user-image", "class"=>"mr-1", "height"=>"12"]) ?> <span class="align-middle">English <i class="mdi mdi-chevron-down"></i> </span>
@@ -54,7 +56,6 @@ $cakeDescription = 'CMS';
                             </a>
                         </div>
                     </li>
-
                     <li class="dropdown notification-list">
                         <a class="nav-link dropdown-toggle  waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                             <i class="fe-bell noti-icon"></i>
@@ -80,10 +81,11 @@ $cakeDescription = 'CMS';
 
                         </div>
                     </li>
+                    -->
                     <li class="dropdown notification-list">
-                        <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                            <?= $this->Html->image('admin/users/avatar-1.jpg',["alt"=>"user-image", "class"=>"rounded-circle"]) ?>
-                            <span class="ml-1"><?= $user['name'] ?> <i class="mdi mdi-chevron-down"></i> </span>
+                        <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light d-flex align-items-center" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            <div class="round-canva" style="background-image:url('img/upload/users/<?= (!is_null($user_logged['avatar'])) ? $user_logged['avatar'] : 'avatar.png' ?>'); width: 32px; height: 32px;"></div>
+                            <span class="ml-1"><?= $user_logged['name'] ?> <i class="mdi mdi-chevron-down"></i> </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                             <div class="dropdown-header noti-title">
@@ -95,13 +97,14 @@ $cakeDescription = 'CMS';
                             <?= $this->Html->link('<i class="fe-log-out"></i><span>'.__('Logout').'</span>',['controller'=>'users','action'=>'logout'],['class'=>'dropdown-item notify-item', 'escape'=>false]) ?>
                         </div>
                     </li>
+                    <!--
                     <li class="dropdown notification-list">
                         <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect waves-light">
                             <i class="fe-settings noti-icon"></i>
                         </a>
                     </li>
+                    -->
                 </ul>
-
                 <div class="logo-box">
                     <a href="index.html" class="logo text-center">
                         <span class="logo-lg">
@@ -187,12 +190,17 @@ $cakeDescription = 'CMS';
                             <div class="col-12">
                                 <div class="page-title-box">
                                     <div class="page-title-right">
-                                        <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Abstack</a></li>
-                                            <li class="breadcrumb-item active">Dashboard</li>
-                                        </ol>
+                                        <?php
+                                        $this->Breadcrumbs->templates([
+                                            'wrapper' => '<ol  class="breadcrumb m-0" {{attrs}}>{{content}}</ol>',
+                                            'item' => '<li {{attrs}}><a href="{{url}}"{{innerAttrs}}>{{title}}</a></li>{{separator}}',
+                                            'itemWithoutLink' => '<li{{attrs}}><span{{innerAttrs}}>{{title}}</span></li>{{separator}}',
+                                            'separator' => '<li{{attrs}}><span{{innerAttrs}}>{{separator}}</span></li>'
+                                        ]);
+                                        echo $this->Breadcrumbs->render();
+                                        ?>
                                     </div>
-                                    <h4 class="page-title">Dashboard</h4>
+                                    <h4 class="page-title"><?= $this->fetch('title') ?></h4>
                                 </div>
                             </div>
                         </div>
@@ -218,7 +226,7 @@ $cakeDescription = 'CMS';
         </div>
         <!-- END wrapper -->
 
-        <!-- Right Sidebar -->
+        <!-- Right Sidebar
         <div class="right-bar">
             <div class="rightbar-title">
                 <a href="javascript:void(0);" class="right-bar-toggle float-right">
@@ -297,9 +305,9 @@ $cakeDescription = 'CMS';
             </div>
         </div>
         <div class="rightbar-overlay"></div>
+        -->
 
         <?= $this->Html->script('vendor.min.js') ?>
-
 
         <!-- Datatable block -->
         <?= $this->fetch('scriptDatatable') ?>
@@ -319,7 +327,8 @@ $cakeDescription = 'CMS';
         <?= $this->fetch('scriptSelect2') ?>
         <!-- Select Block -->
         <?= $this->fetch('scriptSelect') ?>
-
+        <!-- Cropper Block -->
+        <?= $this->fetch('scriptCropper') ?>
 
         <!-- Datatable Init block -->
         <?= $this->fetch('scriptDatatableInit') ?>

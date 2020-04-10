@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Utility\Text; // the Text class for slug
 
 /**
  * Pgs Model
@@ -27,6 +28,14 @@ use Cake\Validation\Validator;
  */
 class PgsTable extends Table
 {
+    public function beforeSave($event, $entity, $options)
+    {
+        if ($entity->isNew() && !$entity->slug) {
+            $sluggedTitle = Text::slug(strtolower($entity->name));
+            $entity->slug = substr($sluggedTitle, 0, 191); // trim slug to maximum length defined in schema
+        }
+    }
+
     /**
      * Initialize method
      *
@@ -71,22 +80,23 @@ class PgsTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->scalar('slug')
-            ->maxLength('slug', 191)
-            ->requirePresence('slug', 'create')
-            ->notEmptyString('slug');
-
-        $validator
-            ->integer('name')
+            ->scalar('name')
+            ->maxLength('name', 191)
             ->requirePresence('name', 'create')
             ->notEmptyString('name');
 
         $validator
-            ->integer('body')
+            ->scalar('slug')
+            ->maxLength('slug', 191)
+            ->notEmptyString('slug')
+            ->add('slug', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+
+        $validator
+            ->scalar('body')
             ->allowEmptyString('body');
 
         $validator
-            ->integer('published')
+            ->boolean('published')
             ->allowEmptyString('published');
 
         return $validator;
@@ -101,6 +111,7 @@ class PgsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
+        $rules->add($rules->isUnique(['slug']));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
         $rules->add($rules->existsIn(['parent_id'], 'ParentPgs'));
 

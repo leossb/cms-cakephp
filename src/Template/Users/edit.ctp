@@ -28,18 +28,23 @@
 	<div class="col-12">
 		<div class="card-box table-responsive">
 			<?= $this->Html->link(__('Back'), ['action' => 'index'],["class"=>"btn btn-outline-primary btn-rounded waves-light waves-effect width-md float-right"]) ?>
-			<h4 class="header-title">
-				<b>Users</b>
-            </h4>
+			<h4 class="header-title"><b><?= __('Users') ?></b></h4>
             <p class="sub-header"><?= __('Edit') . ' ' . __('User') ?></p>
 
-            <?= $this->Form->create($user) ?>
+            <?= $this->Form->create($user,['type'=>'file']) ?>
                 <fieldset>
                     <?php
-                                                    echo $this->Form->control('email', ['class'=>'form-control mb-2', 'label'=>__('email')]);
-                                echo $this->Form->control('password', ['class'=>'form-control mb-2', 'label'=>__('password')]);
-                                echo $this->Form->control('name', ['class'=>'form-control mb-2', 'label'=>__('name')]);
-                                echo $this->Form->control('role', ['class'=>'form-control mb-2', 'label'=>__('role')]);
+                    echo $this->Form->control('email', ['class'=>'form-control mb-2', 'label'=>__('Email')]);
+                    echo $this->Form->control('name', ['class'=>'form-control mb-2', 'label'=>__('Name')]);
+                    echo $this->Form->control('role', ['class'=>'form-control mb-2', 'label'=>__('Role'), 'options'=>['admin'=>__('Admin'),'author'=>__('Author')]]);
+                    if (empty($user->avatar))
+                        echo $this->Form->control('avatar', ['class'=>'form-control mb-2', 'label'=>__('Photo'), 'type'=>'file']);
+                    else
+                    {
+                        echo $this->Form->label(__('Image'));
+                        echo '<br>' . $this->Html->image('upload/users/'.$user->avatar,['width'=>'200']);
+                        echo '<br>' . $this->Html->link('<i class="fas fa-close"></i> '.__('Delete') . ' ' .__('Image'),['action'=>'deleteImage', $user->id, $user->avatar],['escape'=>false, 'class'=>'btn btn-danger']);
+                    }
                     ?>
                 </fieldset>
                 <?= $this->Form->button(__('Submit'),['class'=>'clearfix mt-2 btn btn-gradient']) ?>

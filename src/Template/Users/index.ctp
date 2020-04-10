@@ -12,7 +12,7 @@
 
 <!-- Required datatable js -->
 <?= $this->Html->script('../libs/datatables/jquery.dataTables.min.js', ['block' => 'scriptDatatable']) ?>
-<?= $this->Html->script('../libs/datatables/jquery.dataTables.min.js', ['block' => 'scriptDatatable']) ?>
+<?= $this->Html->script('../libs/datatables/dataTables.bootstrap4.min.js', ['block' => 'scriptDatatable']) ?>
 <!-- Buttons examples -->
 <?= $this->Html->script('../libs/datatables/dataTables.buttons.min.js', ['block' => 'scriptDatatableAdv']) ?>
 <?= $this->Html->script('../libs/datatables/buttons.bootstrap4.min.js', ['block' => 'scriptDatatableAdv']) ?>
@@ -33,29 +33,30 @@
             <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                 <tr>
-                                            <th scope="col"><?= __('id') ?></th>
-                                            <th scope="col"><?= __('email') ?></th>
-                                            <th scope="col"><?= __('password') ?></th>
-                                            <th scope="col"><?= __('name') ?></th>
-                                            <th scope="col"><?= __('role') ?></th>
-                                            <th scope="col"><?= __('created') ?></th>
-                                            <th scope="col"><?= __('modified') ?></th>
-                                        <th scope="col" class="actions"><?= __('Actions') ?></th>
+                    <th width="5%"><?= __('id') ?></th>
+                    <th width="5%"><?= __('Photo') ?></th>
+                    <th width="20%"><?= __('Email') ?></th>
+                    <th width="20%"><?= __('Name') ?></th>
+                    <th width="10%"><?= __('Role') ?></th>
+                    <th width="15%"><?= __('Created') ?></th>
+                    <th width="15%"><?= __('Modified') ?></th>
+                    <th width="10%"><?= __('Actions') ?></th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($users as $user): ?>
                 <tr>
-                                                                                                                                                                                    <td><?= $this->Number->format($user->id) ?></td>
-                                                                                                                                                                                                                                        <td><?= h($user->email) ?></td>
-                                                                                                                                                                                                                                        <td><?= h($user->password) ?></td>
-                                                                                                                                                                                                                                        <td><?= h($user->name) ?></td>
-                                                                                                                                                                                                                                        <td><?= h($user->role) ?></td>
-                                                                                                                                                                                                                                        <td><?= h($user->created) ?></td>
-                                                                                                                                                                                                                                        <td><?= h($user->modified) ?></td>
-                                                                                                                <td class="actions">
-                        <?= $this->Html->link('<i class="fas fa-pencil-alt"></i>', ['action' => 'edit', $user->id], ['class'=>'btn btn-icon waves-effect waves-light btn-primary btn-sm','escape'=>false,'alt'=>__('Edit')]) ?>
-                        <?= $this->Form->postLink('<i class="fas fa-times"></i>', ['action' => 'delete', $user->id], ['class'=>'btn btn-icon waves-effect waves-light btn-danger btn-sm','escape'=>false,'alt'=>__('Delete'),'confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
+                    <td><?= $this->Number->format($user->id) ?></td>
+                    <td><?= (!empty($user->avatar)) ? '<div class="square-canva" style="background-image: url(\'img/upload/users/tb_'.$user->avatar.'\');"></div>' : '' ?></td>
+                    <td><?= h($user->email) ?></td>
+                    <td><?= h($user->name) ?></td>
+                    <td><?= h($user->role) ?></td>
+                    <td><?= h($user->created) ?></td>
+                    <td><?= h($user->modified) ?></td>
+                    <td>
+                        <?= $this->Html->link('<i class="fas fa-lock"></i>', ['action' => 'change_password', $user->id], ['class'=>'btn btn-icon waves-effect waves-light btn-info btn-sm','escape'=>false,'title'=>__('Password')]) ?>
+                        <?= $this->Html->link('<i class="fas fa-pencil-alt"></i>', ['action' => 'edit', $user->id], ['class'=>'btn btn-icon waves-effect waves-light btn-primary btn-sm','escape'=>false,'title'=>__('Edit')]) ?>
+                        <?= $this->Form->postLink('<i class="fas fa-times"></i>', ['action' => 'delete', $user->id], ['class'=>'btn btn-icon waves-effect waves-light btn-danger btn-sm','escape'=>false,'title'=>__('Delete'),'confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

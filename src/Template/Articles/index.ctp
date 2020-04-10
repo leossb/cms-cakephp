@@ -3,7 +3,9 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Article[]|\Cake\Collection\CollectionInterface $articles
  */
-$this->assign('title', 'Index Article View');
+$this->assign('title', __('Articles'));
+$this->Breadcrumbs->add('Dashboard', ['controller' => 'dashboard', 'action' => 'index'], ['class' => 'breadcrumb-item']);
+$this->Breadcrumbs->add(__('Articles'), ['controller' => 'articles', 'action' => 'index'], ['class' => 'breadcrumb-item active']);
 ?>
 
 <!-- Css -->
@@ -13,7 +15,7 @@ $this->assign('title', 'Index Article View');
 
 <!-- Required datatable js -->
 <?= $this->Html->script('../libs/datatables/jquery.dataTables.min.js', ['block' => 'scriptDatatable']) ?>
-<?= $this->Html->script('../libs/datatables/jquery.dataTables.min.js', ['block' => 'scriptDatatable']) ?>
+<?= $this->Html->script('../libs/datatables/dataTables.bootstrap4.min.js', ['block' => 'scriptDatatable']) ?>
 <!-- Buttons examples -->
 <?= $this->Html->script('../libs/datatables/dataTables.buttons.min.js', ['block' => 'scriptDatatableAdv']) ?>
 <?= $this->Html->script('../libs/datatables/buttons.bootstrap4.min.js', ['block' => 'scriptDatatableAdv']) ?>
