@@ -63,14 +63,21 @@ class LessonsController extends AppController
         $lesson = $this->Lessons->newEntity();
         if ($this->request->is('post')) {
             $lesson = $this->Lessons->patchEntity($lesson, $this->request->getData());
+            if (!empty($this->request->getData('cover')))
+            {
+                $path = './img/upload/lessons';
+                $file = $this->upload_file_transfer('cover', 'sim', 'jpg,jpeg,JPEG,JPG,png,PNG',$path, 'nao', '200000', 'nao');
+                $this->resizeImage($file,$path,$path,1200,''); // Arquivo, origem, destino, largura, pre
+                $this->resizeImage($file,$path,$path,300,'tb_'); // Arquivo, origem, destino, largura, pre
+                $lesson->cover = $file;
+            }
             if ($this->Lessons->save($lesson)) {
-                $this->Flash->success(__('The lesson has been saved.'));
-
+                $this->Flash->success(__('The lesson').' '.__('has been saved.'));
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The lesson could not be saved. Please, try again.'));
+            $this->Flash->error(__('The lesson').' '.__('could not be saved. Please, try again.'));
         }
-        $topics = $this->Lessons->Topics->find('list', ['limit' => 200]);
+        $topics = $this->Lessons->Topics->find('list');
         $this->set(compact('lesson', 'topics'));
     }
 
@@ -86,16 +93,24 @@ class LessonsController extends AppController
         $lesson = $this->Lessons->get($id, [
             'contain' => [],
         ]);
+        $actualImage = $lesson->cover;
         if ($this->request->is(['patch', 'post', 'put'])) {
             $lesson = $this->Lessons->patchEntity($lesson, $this->request->getData());
+            if ($actualImage != $this->request->getData('cover') && !empty($this->request->getData('cover')))
+            {
+                $path = './img/upload/lessons';
+                $file = $this->upload_file_transfer('cover', 'sim', 'jpg,jpeg,JPEG,JPG,png,PNG', $path, 'nao', '200000', 'nao');
+                $this->resizeImage($file,$path,$path,1200,''); // Arquivo, origem, destino, largura, pre
+                $this->resizeImage($file,$path,$path,300,'tb_'); // Arquivo, origem, destino, largura, pre
+                $lesson->cover = $file;
+            }
             if ($this->Lessons->save($lesson)) {
-                $this->Flash->success(__('The lesson has been saved.'));
-
+                $this->Flash->success(__('The lesson').' '.__('has been saved.'));
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The lesson could not be saved. Please, try again.'));
+            $this->Flash->error(__('The lesson').' '.__('could not be saved. Please, try again.'));
         }
-        $topics = $this->Lessons->Topics->find('list', ['limit' => 200]);
+        $topics = $this->Lessons->Topics->find('list');
         $this->set(compact('lesson', 'topics'));
     }
 
@@ -110,12 +125,46 @@ class LessonsController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $lesson = $this->Lessons->get($id);
+        $img = $lesson->cover;
         if ($this->Lessons->delete($lesson)) {
-            $this->Flash->success(__('The lesson has been deleted.'));
+            if (!empty($img))
+            {
+                $path = 'img/upload/lessons/';
+                if (file_exists($path))
+                    unlink($path.$img);
+                if (file_exists($path.'tb_'.$img))
+                    unlink($path.'tb_'.$img);
+            }
+            $this->Flash->success(__('The lesson').' '.__('has been deleted.'));
         } else {
-            $this->Flash->error(__('The lesson could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The lesson').' '.__('could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * Delete method
+     *
+     * @param string|null $id Lesson id.
+     * @return \Cake\Http\Response|null Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function deleteImage($id)
+    {
+        //$this->request->allowMethod(['post', 'delete']);
+        $lesson = $this->Lessons->get($id);
+        $img = $lesson->cover;
+        $lesson->cover = NULL;
+
+        if ($this->Lessons->save($lesson))
+        {
+            unlink('img/upload/lessons/'.$img);
+            $this->Flash->success(__('The image has been deleted.'));
+        }
+        else
+            $this->Flash->error(__('The image could not be deleted. Please, try again.'));
+
+        return $this->redirect(['action' => 'edit', $id]);
     }
 }

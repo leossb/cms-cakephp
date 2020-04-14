@@ -62,10 +62,10 @@ class PgsController extends AppController
         if ($this->request->is('post')) {
             $pg = $this->Pgs->patchEntity($pg, $this->request->getData());
             if ($this->Pgs->save($pg)) {
-                $this->Flash->success(__('The page has been saved.'));
+                $this->Flash->success(__('The page').' '.__(' has been saved.'));
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The page could not be saved. Please, try again.'));
+            $this->Flash->error(__('The page').' '.__(' could not be saved. Please, try again.'));
         }
         $users = $this->Pgs->Users->find('list');
         $parentPgs = $this->Pgs->ParentPgs->find('treeList');
@@ -87,11 +87,11 @@ class PgsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $pg = $this->Pgs->patchEntity($pg, $this->request->getData());
             if ($this->Pgs->save($pg)) {
-                $this->Flash->success(__('The page has been saved.'));
+                $this->Flash->success(__('The page').' '.__(' has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The page could not be saved. Please, try again.'));
+            $this->Flash->error(__('The page').' '.__(' could not be saved. Please, try again.'));
         }
         $users = $this->Pgs->Users->find('list');
         $parentPgs = $this->Pgs->ParentPgs->find('treeList');
@@ -110,9 +110,9 @@ class PgsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $pg = $this->Pgs->get($id);
         if ($this->Pgs->delete($pg)) {
-            $this->Flash->success(__('The page has been deleted.'));
+            $this->Flash->success(__('The page').' '.__(' has been deleted.'));
         } else {
-            $this->Flash->error(__('The page could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The page').' '.__(' could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

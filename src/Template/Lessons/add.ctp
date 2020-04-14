@@ -33,14 +33,14 @@
             </h4>
             <p class="sub-header"><?= __('Add') . ' ' . __('Lesson') ?></p>
 
-            <?= $this->Form->create($lesson) ?>
+            <?= $this->Form->create($lesson,['type'=>'file']) ?>
                 <fieldset>
                     <?php
-                        echo $this->Form->control('title', ['class'=>'form-control mb-2', 'label'=>__('Title')]);
-                        echo $this->Form->control('description', ['class'=>'form-control mb-2', 'label'=>__('Description')]);
-                        echo $this->Form->control('video', ['class'=>'form-control mb-2', 'label'=>__('Video')]);
-                        echo $this->Form->control('cover', ['class'=>'form-control mb-2', 'label'=>__('Cover')]);
-                        echo $this->Form->control('topic_id', ['options' => $topics, 'class'=>'form-control mb-2', 'label'=>__('Topic')]);
+                    echo $this->Form->control('title', ['class'=>'form-control mb-2', 'label'=>__('Title')]);
+                    echo $this->Form->control('description', ['class'=>'form-control mb-2', 'label'=>__('Description')]);
+                    echo $this->Form->control('video', ['class'=>'form-control mb-2', 'label'=>__('Video')]);
+                    echo $this->Form->control('cover', ['class'=>'form-control mb-2', 'label'=>__('Cover'), 'type'=>'file']);
+                    echo $this->Form->control('topic_id', ['options' => $topics, 'class'=>'form-control mb-2', 'label'=>__('Topic')]);
                     ?>
                 </fieldset>
                 <?= $this->Form->button(__('Submit'),['class'=>'clearfix mt-2 btn btn-gradient']) ?>

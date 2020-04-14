@@ -62,11 +62,11 @@ class ExamsController extends AppController
         if ($this->request->is('post')) {
             $exam = $this->Exams->patchEntity($exam, $this->request->getData());
             if ($this->Exams->save($exam)) {
-                $this->Flash->success(__('The exam has been saved.'));
+                $this->Flash->success(__('The exam').' '.__(' has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The exam could not be saved. Please, try again.'));
+            $this->Flash->error(__('The exam').' '.__(' could not be saved. Please, try again.'));
         }
         $topics = $this->Exams->Topics->find('list', ['limit' => 200]);
         $this->set(compact('exam', 'topics'));
@@ -87,11 +87,11 @@ class ExamsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $exam = $this->Exams->patchEntity($exam, $this->request->getData());
             if ($this->Exams->save($exam)) {
-                $this->Flash->success(__('The exam has been saved.'));
+                $this->Flash->success(__('The exam').' '.__(' has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The exam could not be saved. Please, try again.'));
+            $this->Flash->error(__('The exam').' '.__(' could not be saved. Please, try again.'));
         }
         $topics = $this->Exams->Topics->find('list', ['limit' => 200]);
         $this->set(compact('exam', 'topics'));
@@ -109,9 +109,9 @@ class ExamsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $exam = $this->Exams->get($id);
         if ($this->Exams->delete($exam)) {
-            $this->Flash->success(__('The exam has been deleted.'));
+            $this->Flash->success(__('The exam').' '.__(' has been deleted.'));
         } else {
-            $this->Flash->error(__('The exam could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The exam').' '.__(' could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

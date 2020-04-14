@@ -104,6 +104,12 @@ class ArticlesTable extends Table
             ->allowEmptyString('body');
 
         $validator
+            ->scalar('cover')
+            ->maxLength('cover', 255)
+            ->requirePresence('cover', 'create')
+            ->allowEmptyString('cover');
+
+        $validator
             ->boolean('published')
             ->allowEmptyString('published');
 

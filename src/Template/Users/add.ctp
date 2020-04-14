@@ -33,7 +33,7 @@
             </h4>
             <p class="sub-header"><?= __('Add') . ' ' . __('User') ?></p>
 
-            <?= $this->Form->create($user) ?>
+            <?= $this->Form->create($user,['type'=>'file']) ?>
                 <fieldset>
                     <?php
                     echo $this->Form->control('email', ['class'=>'form-control mb-2', 'label'=>__('email')]);

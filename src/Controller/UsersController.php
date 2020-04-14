@@ -64,9 +64,10 @@ class UsersController extends AppController
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if (!empty($this->request->getData('avatar')))
             {
-                $path = './img/upload/users/';
+                $path = './img/upload/users';
                 $file = $this->upload_file_transfer('avatar', 'sim', 'jpg,jpeg,JPEG,JPG,png,PNG',$path, 'nao', '200000', 'nao');
                 $this->resizeImage($file,$path,$path,1200,''); // Arquivo, origem, destino, largura, pre
+                $this->resizeImage($file,$path,$path,300,'tb_'); // Arquivo, origem, destino, largura, pre
                 $user->avatar = $file;
             }
 
@@ -107,10 +108,10 @@ class UsersController extends AppController
                     $mail->send($message);
                 }
 
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('The user').' '.__(' has been saved.'));
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            $this->Flash->error(__('The user').' '.__(' could not be saved. Please, try again.'));
         }
         $this->set(compact('user'));
     }
@@ -131,7 +132,7 @@ class UsersController extends AppController
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($actualImage != $this->request->getData('avatar') && !empty($this->request->getData('avatar')))
             {
-                $path = './img/upload/users/';
+                $path = './img/upload/users';
                 $file = $this->upload_file_transfer('avatar', 'sim', 'jpg,jpeg,JPEG,JPG,png,PNG', $path, 'nao', '200000', 'nao');
                 $this->resizeImage($file,$path,$path,1200,''); // Arquivo, origem, destino, largura, pre
                 $this->resizeImage($file,$path,$path,300,'tb_'); // Arquivo, origem, destino, largura, pre
@@ -139,10 +140,10 @@ class UsersController extends AppController
             }
             if ($this->Users->save($user))
             {
-                $this->Flash->success(__('The user has been updated.'));
+                $this->Flash->success(__('The user').' '.__(' has been updated.'));
                 return $this->redirect(['action' => 'edit', $id]);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            $this->Flash->error(__('The user').' '.__(' could not be saved. Please, try again.'));
         }
         $this->set(compact('user'));
     }
@@ -159,9 +160,9 @@ class UsersController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
         if ($this->Users->delete($user)) {
-            $this->Flash->success(__('The user has been deleted.'));
+            $this->Flash->success(__('The user').' '.__(' has been deleted.'));
         } else {
-            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The user').' '.__(' could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);
@@ -184,10 +185,10 @@ class UsersController extends AppController
         if ($this->Users->save($user))
         {
             unlink('img/upload/users/'.$img);
-            $this->Flash->success(__('The image user has been deleted.'));
+            $this->Flash->success(__('The image has been deleted.'));
         }
         else
-            $this->Flash->error(__('The image user could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The image could not be deleted. Please, try again.'));
 
         return $this->redirect(['action' => 'edit', $id]);
     }

@@ -30,6 +30,7 @@ class Course extends Entity
     protected $_accessible = [
         'name' => true,
         'author_id' => true,
+        'description' => true,
         'created' => true,
         'modified' => true,
         'author' => true,

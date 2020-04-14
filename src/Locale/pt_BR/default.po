@@ -211,6 +211,9 @@ msgstr "Arquivo"
 msgid "Send"
 msgstr "Enviar"
 
+msgid "Insert"
+msgstr "Inserir"
+
 msgid "Enter your new password"
 msgstr "Entre com sua nova senha"
 
@@ -253,6 +256,12 @@ msgstr "Senha atualizada com sucesso"
 msgid "Password does not be updated"
 msgstr "Senha não pode ser atualizada"
 
+msgid "Your account was activated. Please sign in."
+msgstr "Sua conta foi ativada. Por favor, entre"
+
+msgid "Error to reset passkey/timeout"
+msgstr "Erro ao resetar a chave de segurança"
+
 msgid "Register"
 msgstr "Cadastre"
 
@@ -264,6 +273,102 @@ msgstr "Escolha sua nova senha"
 
 msgid "You are now logged out."
 msgstr "Você está deslogado agora."
+
+msgid "Watch now"
+msgstr "Veja"
+
+msgid "The article"
+msgstr "O artigo"
+
+msgid "The user"
+msgstr "O usuário"
+
+msgid "The question"
+msgstr "A pergunta"
+
+msgid "The page"
+msgstr "A página"
+
+msgid "The exam"
+msgstr "O teste"
+
+msgid "The category"
+msgstr "A categoria"
+
+msgid "The lesson"
+msgstr "A aula"
+
+msgid "The course"
+msgstr "O curso"
+
+msgid "The comment"
+msgstr "O comentário"
+
+msgid "The answer"
+msgstr "A resposta"
+
+msgid "has been saved."
+msgstr "foi salvo."
+
+msgid "could not be saved. Please, try again."
+msgstr "não pode ser salvo. Por favor, tente novamente."
+
+msgid "has been deleted."
+msgstr "foi deletado."
+
+msgid "could not be deleted. Please, try again."
+msgstr "não pode ser deletado. Por favor, tente novamente."
+
+msgid "The image has been deleted."
+msgstr "A imagem foi deletada."
+
+msgid "The image could not be deleted. Please, try again."
+msgstr "A imagem não pode ser deletada. Por favor, tente novamente."
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
 
 msgid ""
 msgstr ""

@@ -33,13 +33,20 @@
             </h4>
             <p class="sub-header"><?= __('Edit') . ' ' . __('Lesson') ?></p>
 
-            <?= $this->Form->create($lesson) ?>
+            <?= $this->Form->create($lesson,['type'=>'file']) ?>
                 <fieldset>
                     <?php
                     echo $this->Form->control('title', ['class'=>'form-control mb-2', 'label'=>__('Title')]);
                     echo $this->Form->control('description', ['class'=>'form-control mb-2', 'label'=>__('Description')]);
                     echo $this->Form->control('video', ['class'=>'form-control mb-2', 'label'=>__('Video')]);
-                    echo $this->Form->control('cover', ['class'=>'form-control mb-2', 'label'=>__('Cover')]);
+                    if (empty($lesson->cover))
+                        echo $this->Form->control('cover', ['class'=>'w-100 mb-2', 'label'=>__('Cover'), 'type'=>'file']);
+                    else
+                    {
+                        echo $this->Form->label(__('Cover'));
+                        echo '<br>' . $this->Html->image('upload/lessons/'.$lesson->cover,['width'=>'200']);
+                        echo '<br>' . $this->Html->link('<i class="fas fa-close"></i> '.__('Delete') . ' ' .__('Image'),['action'=>'deleteImage', $lesson->id],['escape'=>false, 'class'=>'btn btn-danger mb-2']);
+                    }
                     echo $this->Form->control('topic_id', ['options' => $topics, 'class'=>'form-control mb-2', 'label'=>__('Topic')]);
                     ?>
                 </fieldset>

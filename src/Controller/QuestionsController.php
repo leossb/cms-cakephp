@@ -54,11 +54,11 @@ class QuestionsController extends AppController
         if ($this->request->is('post')) {
             $question = $this->Questions->patchEntity($question, $this->request->getData());
             if ($this->Questions->save($question)) {
-                $this->Flash->success(__('The question has been saved.'));
+                $this->Flash->success(__('The question').' '.__(' has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The question could not be saved. Please, try again.'));
+            $this->Flash->error(__('The question').' '.__(' could not be saved. Please, try again.'));
         }
         $exams = $this->Questions->Exams->find('list', ['limit' => 200]);
         $this->set(compact('question', 'exams'));
@@ -79,11 +79,11 @@ class QuestionsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $question = $this->Questions->patchEntity($question, $this->request->getData());
             if ($this->Questions->save($question)) {
-                $this->Flash->success(__('The question has been saved.'));
+                $this->Flash->success(__('The question').' '.__(' has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The question could not be saved. Please, try again.'));
+            $this->Flash->error(__('The question').' '.__(' could not be saved. Please, try again.'));
         }
         $exams = $this->Questions->Exams->find('list', ['limit' => 200]);
         $this->set(compact('question', 'exams'));
@@ -101,9 +101,9 @@ class QuestionsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $question = $this->Questions->get($id);
         if ($this->Questions->delete($question)) {
-            $this->Flash->success(__('The question has been deleted.'));
+            $this->Flash->success(__('The question').' '.__(' has been deleted.'));
         } else {
-            $this->Flash->error(__('The question could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The question').' '.__(' could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

@@ -38,11 +38,11 @@ $this->Breadcrumbs->add(__('Articles'), ['controller' => 'articles', 'action' =>
                 <thead>
                 <tr>
                     <th scope="col"><?= __('id') ?></th>
-                    <th scope="col"><?= __('User') ?></th>
+                    <th scope="col"><?= __('Cover') ?></th>
                     <th scope="col"><?= __('Title') ?></th>
                     <th scope="col"><?= __('Slug') ?></th>
                     <th scope="col"><?= __('Published') ?></th>
-                    <th scope="col"><?= __('Created') ?></th>
+                    <th scope="col"><?= __('User') ?></th>
                     <th scope="col"><?= __('Modified') ?></th>
                     <th scope="col" class="actions"><?= __('Actions') ?></th>
                 </tr>
@@ -51,11 +51,11 @@ $this->Breadcrumbs->add(__('Articles'), ['controller' => 'articles', 'action' =>
                 <?php foreach ($articles as $article): ?>
                 <tr>
                     <td><?= $this->Number->format($article->id) ?></td>
-                    <td><?= $article->has('user') ? $this->Html->link($article->user->name, ['controller' => 'Users', 'action' => 'view', $article->user->id]) : '' ?></td>
+                    <td><?= (!empty($article->cover)) ? $this->Html->image('upload/articles/'.$article->cover,['width'=>'100']) : '' ?></td>
                     <td><?= h($article->title) ?></td>
                     <td><?= h($article->slug) ?></td>
                     <td><?= ($article->published == 1) ? 'SIM' : 'NÃO'; ?></td>
-                    <td><?= h($article->created) ?></td>
+                    <td><?= $article->has('user') ? $this->Html->link($article->user->name, ['controller' => 'Users', 'action' => 'view', $article->user->id]) : '' ?></td>
                     <td><?= h($article->modified) ?></td>
                     <td class="actions">
                         <?= $this->Html->link('<i class="fas fa-pencil-alt"></i>', ['action' => 'edit', $article->id], ['class'=>'btn btn-icon btn-sm waves-effect waves-light btn-primary','escape'=>false,'alt'=>__('Edit')]) ?>

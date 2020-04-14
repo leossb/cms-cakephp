@@ -61,11 +61,11 @@ class CommentsController extends AppController
         if ($this->request->is('post')) {
             $comment = $this->Comments->patchEntity($comment, $this->request->getData());
             if ($this->Comments->save($comment)) {
-                $this->Flash->success(__('The comment has been saved.'));
+                $this->Flash->success(__('The comment').' '.__(' has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The comment could not be saved. Please, try again.'));
+            $this->Flash->error(__('The comment').' '.__(' could not be saved. Please, try again.'));
         }
         $users = $this->Comments->Users->find('list');
         $articles = $this->Comments->Articles->find('list');
@@ -87,11 +87,11 @@ class CommentsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $comment = $this->Comments->patchEntity($comment, $this->request->getData());
             if ($this->Comments->save($comment)) {
-                $this->Flash->success(__('The comment has been saved.'));
+                $this->Flash->success(__('The comment').' '.__(' has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The comment could not be saved. Please, try again.'));
+            $this->Flash->error(__('The comment').' '.__(' could not be saved. Please, try again.'));
         }
         $users = $this->Comments->Users->find('list');
         $articles = $this->Comments->Articles->find('list');
@@ -110,9 +110,9 @@ class CommentsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $comment = $this->Comments->get($id);
         if ($this->Comments->delete($comment)) {
-            $this->Flash->success(__('The comment has been deleted.'));
+            $this->Flash->success(__('The comment').' '.__(' has been deleted.'));
         } else {
-            $this->Flash->error(__('The comment could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The comment').' '.__(' could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

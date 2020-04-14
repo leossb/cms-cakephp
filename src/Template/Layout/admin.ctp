@@ -27,12 +27,14 @@ $cakeDescription = 'CMS';
 
         <?= $this->Html->meta('icon') ?>
 
-        <?= $this->fetch('cssDatatable') ?> <!-- Datatable block -->
-        <?= $this->fetch('cssTagsinput') ?> <!-- Tags input block -->
-        <?= $this->fetch('cssSwitchery') ?> <!-- Switchery block -->
-        <?= $this->fetch('cssSelect2') ?>   <!-- Select2 block -->
-        <?= $this->fetch('cssSelect') ?>    <!-- Select block -->
-        <?= $this->fetch('cssCropper') ?>    <!-- Cropper block -->
+        <?= $this->fetch('cssDatatable') ?>     <!-- Datatable block -->
+        <?= $this->fetch('cssTagsinput') ?>     <!-- Tags input block -->
+        <?= $this->fetch('cssSwitchery') ?>     <!-- Switchery block -->
+        <?= $this->fetch('cssSelect2') ?>       <!-- Select2 block -->
+        <?= $this->fetch('cssSelect') ?>        <!-- Select block -->
+        <?= $this->fetch('cssCropper') ?>       <!-- Cropper block -->
+        <?= $this->fetch('cssSummernote') ?>   <!-- Summernote block -->
+        <?= $this->fetch('cssMagnificPopup') ?>   <!-- Summernote block -->
 
         <!-- Required css -->
         <?= $this->Html->css('bootstrap.min.css') ?>
@@ -84,7 +86,7 @@ $cakeDescription = 'CMS';
                     -->
                     <li class="dropdown notification-list">
                         <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light d-flex align-items-center" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                            <div class="round-canva" style="background-image:url('img/upload/users/<?= (!is_null($user_logged['avatar'])) ? $user_logged['avatar'] : 'avatar.png' ?>'); width: 32px; height: 32px;"></div>
+                            <div class="round-canva" style="background-image:url('<?= $webroot ?>/img/upload/users/<?= (!is_null($user_logged['avatar'])) ? $user_logged['avatar'] : 'avatar.png' ?>'); width: 32px; height: 32px;"></div>
                             <span class="ml-1"><?= $user_logged['name'] ?> <i class="mdi mdi-chevron-down"></i> </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
@@ -154,8 +156,8 @@ $cakeDescription = 'CMS';
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <ul class="nav-second-level" aria-expanded="false">
-                                    <li><?= $this->Html->link(__('New').' '.__('Article'),['controller'=>'articles','action'=>'add'],['escape'=>false]) ?></li>
                                     <li><?= $this->Html->link(__('Articles').' '.__('List'),['controller'=>'articles','action'=>'index'],['escape'=>false]) ?></li>
+                                    <li><?= $this->Html->link(__('Insert').' '.__('Article'),['controller'=>'articles','action'=>'add'],['escape'=>false]) ?></li>
                                     <li><?= $this->Html->link(__('Comments'),['controller'=>'comments','action'=>'index'],['escape'=>false]) ?></li>
                                 </ul>
                             </li>
@@ -168,7 +170,7 @@ $cakeDescription = 'CMS';
                                 <ul class="nav-second-level" aria-expanded="false">
                                     <li><?= $this->Html->link(__('Courses').' '.__('List'),['controller'=>'courses','action'=>'index'],['escape'=>false]) ?></li>
                                     <li><?= $this->Html->link(__('Lessons'),['controller'=>'lessons','action'=>'index'],['escape'=>false]) ?></li>
-                                    <li><?= $this->Html->link(__('New').' '.__('Lesson'),['controller'=>'lessons','action'=>'add'],['escape'=>false]) ?></li>
+                                    <li><?= $this->Html->link(__('Insert').' '.__('Lesson'),['controller'=>'lessons','action'=>'add'],['escape'=>false]) ?></li>
                                     <li><?= $this->Html->link(__('Exams'),['controller'=>'exams','action'=>'index'],['escape'=>false]) ?></li>
                                 </ul>
                             </li>
@@ -329,11 +331,19 @@ $cakeDescription = 'CMS';
         <?= $this->fetch('scriptSelect') ?>
         <!-- Cropper Block -->
         <?= $this->fetch('scriptCropper') ?>
+        <!-- Summernote Block -->
+        <?= $this->fetch('scriptSummernote') ?>
+        <!-- Magnific Popup  Block -->
+        <?= $this->fetch('scriptMagnificPopup') ?>
 
         <!-- Datatable Init block -->
         <?= $this->fetch('scriptDatatableInit') ?>
         <!-- Form Advanced Init block -->
         <?= $this->fetch('scriptFormadvancedInit') ?>
+        <!-- Summernote Init block -->
+        <?= $this->fetch('scriptSummernoteInit') ?>
+        <!-- Magnific Popup Init block -->
+        <?= $this->fetch('scriptMagnificPopupInit') ?>
 
         <?= $this->Html->script('app.min.js') ?>
         <?= $this->Html->script('custom.js') ?>

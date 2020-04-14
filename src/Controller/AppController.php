@@ -81,8 +81,11 @@ class AppController extends Controller
          */
         //$this->loadComponent('Security');
 
+
+        $webroot = $this->request->getAttribute('webroot');
         $user_logged = $this->Auth->user();
-        $this->set(compact('user_logged'));
+
+        $this->set(compact('user_logged','webroot'));
     }
 
     public function isAuthorized($user)
@@ -227,8 +230,8 @@ class AppController extends Controller
 
     public function resizeImage($arquivo,$origem,$destino,$largura,$pre)
     {
-        $filename = $origem . $arquivo;
-        $new_filename = $destino . $pre . $arquivo;
+        $filename = $origem . '/' . $arquivo;
+        $new_filename = $destino . '/'  . $pre . $arquivo;
 
         $ext = explode(".",strtolower($filename));
         $n = count($ext)-1;

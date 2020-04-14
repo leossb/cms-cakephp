@@ -43,7 +43,7 @@
                     {
                         echo $this->Form->label(__('Image'));
                         echo '<br>' . $this->Html->image('upload/users/'.$user->avatar,['width'=>'200']);
-                        echo '<br>' . $this->Html->link('<i class="fas fa-close"></i> '.__('Delete') . ' ' .__('Image'),['action'=>'deleteImage', $user->id, $user->avatar],['escape'=>false, 'class'=>'btn btn-danger']);
+                        echo '<br>' . $this->Html->link('<i class="fas fa-close"></i> '.__('Delete') . ' ' .__('Image'),['action'=>'deleteImage', $user->id],['escape'=>false, 'class'=>'btn btn-danger mb-2']);
                     }
                     ?>
                 </fieldset>

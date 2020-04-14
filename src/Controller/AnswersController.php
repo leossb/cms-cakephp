@@ -62,11 +62,11 @@ class AnswersController extends AppController
         if ($this->request->is('post')) {
             $answer = $this->Answers->patchEntity($answer, $this->request->getData());
             if ($this->Answers->save($answer)) {
-                $this->Flash->success(__('The answer has been saved.'));
+                $this->Flash->success(__('The answer').' '.__(' has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The answer could not be saved. Please, try again.'));
+            $this->Flash->error(__('The answer').' '.__(' could not be saved. Please, try again.'));
         }
         $questions = $this->Answers->Questions->find('list', ['limit' => 200]);
         $this->set(compact('answer', 'questions'));
@@ -87,11 +87,11 @@ class AnswersController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $answer = $this->Answers->patchEntity($answer, $this->request->getData());
             if ($this->Answers->save($answer)) {
-                $this->Flash->success(__('The answer has been saved.'));
+                $this->Flash->success(__('The answer').' '.__(' has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The answer could not be saved. Please, try again.'));
+            $this->Flash->error(__('The answer').' '.__(' could not be saved. Please, try again.'));
         }
         $questions = $this->Answers->Questions->find('list', ['limit' => 200]);
         $this->set(compact('answer', 'questions'));
@@ -109,9 +109,9 @@ class AnswersController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $answer = $this->Answers->get($id);
         if ($this->Answers->delete($answer)) {
-            $this->Flash->success(__('The answer has been deleted.'));
+            $this->Flash->success(__('The answer').' '.__(' has been deleted.'));
         } else {
-            $this->Flash->error(__('The answer could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The answer').' '.__(' could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

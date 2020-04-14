@@ -61,15 +61,23 @@ class ArticlesController extends AppController
         $article = $this->Articles->newEntity();
         if ($this->request->is('post')) {
             $article = $this->Articles->patchEntity($article, $this->request->getData());
+            if (!empty($this->request->getData('cover')))
+            {
+                $path = './img/upload/articles';
+                $file = $this->upload_file_transfer('cover', 'sim', 'jpg,jpeg,JPEG,JPG,png,PNG',$path, 'nao', '200000', 'nao');
+                $this->resizeImage($file,$path,$path,1200,''); // Arquivo, origem, destino, largura, pre
+                $this->resizeImage($file,$path,$path,300,'tb_'); // Arquivo, origem, destino, largura, pre
+                $article->cover = $file;
+            }
             $article->user_id = $this->Auth->user('id');
             if ($this->Articles->save($article)) {
-                $this->Flash->success(__('The article has been saved.'));
+                $this->Flash->success(__('The article').' '.__('has been saved.'));
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The article could not be saved. Please, try again.'));
+            $this->Flash->error(__('The article').' '.__('could not be saved. Please, try again.'));
         }
-        $users = $this->Articles->Users->find('list', ['limit' => 200]);
-        $tags = $this->Articles->Tags->find('list', ['limit' => 200]);
+        $users = $this->Articles->Users->find('list');
+        $tags = $this->Articles->Tags->find('list');
         $categories = $this->Articles->Categories->find('treeList');
         $this->set(compact('article', 'users', 'tags','categories'));
     }
@@ -86,16 +94,25 @@ class ArticlesController extends AppController
         $article = $this->Articles->get($id, [
             'contain' => ['Tags'],
         ]);
+        $actualImage = $article->cover;
         if ($this->request->is(['patch', 'post', 'put'])) {
             $article = $this->Articles->patchEntity($article, $this->request->getData(), [
                 // Added: Disable modification of user_id.
                 'accessibleFields' => ['user_id' => false]
             ]);
+            if ($actualImage != $this->request->getData('cover') && !empty($this->request->getData('cover')))
+            {
+                $path = './img/upload/articles';
+                $file = $this->upload_file_transfer('cover', 'sim', 'jpg,jpeg,JPEG,JPG,png,PNG', $path, 'nao', '200000', 'nao');
+                $this->resizeImage($file,$path,$path,1200,''); // Arquivo, origem, destino, largura, pre
+                $this->resizeImage($file,$path,$path,300,'tb_'); // Arquivo, origem, destino, largura, pre
+                $article->cover = $file;
+            }
             if ($this->Articles->save($article)) {
-                $this->Flash->success(__('The article has been saved.'));
+                $this->Flash->success(__('The article').' '.__('has been saved.'));
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The article could not be saved. Please, try again.'));
+            $this->Flash->error(__('The article').' '.__('could not be saved. Please, try again.'));
         }
         $users = $this->Articles->Users->find('list');
         $tags = $this->Articles->Tags->find('list');
@@ -114,13 +131,48 @@ class ArticlesController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $article = $this->Articles->get($id);
-        if ($this->Articles->delete($article)) {
-            $this->Flash->success(__('The article has been deleted.'));
+        $img = $article->cover;
+        if ($this->Articles->delete($article))
+        {
+            if (!empty($img))
+            {
+                $path = 'img/upload/articles/';
+                if (file_exists($path))
+                    unlink($path.$img);
+                if (file_exists($path.'tb_'.$img))
+                    unlink($path.'tb_'.$img);
+            }
+            $this->Flash->success(__('The article').' '.__('has been deleted.'));
         } else {
-            $this->Flash->error(__('The article could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The article').' '.__('could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * Delete method
+     *
+     * @param string|null $id Lesson id.
+     * @return \Cake\Http\Response|null Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function deleteImage($id)
+    {
+        //$this->request->allowMethod(['post', 'delete']);
+        $article = $this->Articles->get($id);
+        $img = $article->cover;
+        $article->cover = NULL;
+
+        if ($this->Articles->save($article))
+        {
+            unlink('img/upload/articles/'.$img);
+            $this->Flash->success(__('The image has been deleted.'));
+        }
+        else
+            $this->Flash->error(__('The image could not be deleted. Please, try again.'));
+
+        return $this->redirect(['action' => 'edit', $id]);
     }
 
     /**

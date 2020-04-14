@@ -9,11 +9,12 @@
 <?= $this->Html->css('../libs/datatables/dataTables.bootstrap4.css', ['block' => 'cssDatatable']) ?>
 <?= $this->Html->css('../libs/datatables/buttons.bootstrap4.css', ['block' => 'cssDatatable']) ?>
 <?= $this->Html->css('../libs/datatables/responsive.bootstrap4.css', ['block' => 'cssDatatable']) ?>
+<?= $this->Html->css('../libs/magnificPopup/magnific-popup.css', ['block' => 'cssMagnificPopup']) ?>
 
 <!-- Required datatable js -->
 <?= $this->Html->script('../libs/datatables/jquery.dataTables.min.js', ['block' => 'scriptDatatable']) ?>
-<?= $this->Html->script('../libs/datatables/jquery.dataTables.min.js', ['block' => 'scriptDatatable']) ?>
-<!-- Buttons examples -->
+<?= $this->Html->script('../libs/datatables/dataTables.bootstrap4.min.js', ['block' => 'scriptDatatable']) ?>
+
 <?= $this->Html->script('../libs/datatables/dataTables.buttons.min.js', ['block' => 'scriptDatatableAdv']) ?>
 <?= $this->Html->script('../libs/datatables/buttons.bootstrap4.min.js', ['block' => 'scriptDatatableAdv']) ?>
 <?= $this->Html->script('../libs/jszip/jszip.min.js', ['block' => 'scriptJszip']) ?>
@@ -21,8 +22,11 @@
 <?= $this->Html->script('../libs/pdfmake/vfs_fonts.js', ['block' => 'scriptVfsfonts']) ?>
 <?= $this->Html->script('../libs/datatables/buttons.html5.min.js', ['block' => 'scriptDatatableAdv']) ?>
 <?= $this->Html->script('../libs/datatables/buttons.print.min.js', ['block' => 'scriptDatatableAdv']) ?>
-<!-- Datatables init -->
+<?= $this->Html->script('../libs/magnificPopup/magnific-popup.min.js', ['block' => 'scriptMagnificPopup']) ?>
+
+<!-- init -->
 <?= $this->Html->script('pages/datatables.init.js', ['block' => 'scriptDatatableInit']) ?>
+<?= $this->Html->script('pages/magnific-popup.init.js', ['block' => 'scriptMagnificPopupInit']) ?>
 
 <div class="row">
     <div class="col-12">
@@ -30,28 +34,26 @@
             <?= $this->Html->link(__('New Lesson'), ['action' => 'add'],["class"=>"btn btn-outline-primary btn-rounded waves-light waves-effect width-md float-right"]) ?>
             <h4 class="header-title"><b><?= __('Lessons') ?></b></h4>
             <p class="sub-header"><?= __('Lessons') ?> <?= __('List') ?></p>
-            <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+            <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                 <tr>
-                    <th scope="col"><?= __('Id') ?></th>
-                    <th scope="col"><?= __('Title') ?></th>
-                    <th scope="col"><?= __('Video') ?></th>
-                    <th scope="col"><?= __('Cover') ?></th>
-                    <th scope="col"><?= __('Topic_id') ?></th>
-                    <th scope="col"><?= __('Created') ?></th>
-                    <th scope="col"><?= __('Modified') ?></th>
-                    <th scope="col" class="actions"><?= __('Actions') ?></th>
+                    <th width="5%"><?= __('Id') ?></th>
+                    <th width="10%"><?= __('Cover') ?></th>
+                    <th width="45%"><?= __('Title') ?></th>
+                    <th width="10%"><?= __('Video') ?></th>
+                    <th width="10%"><?= __('Course') ?></th>
+                    <th width="10%"><?= __('Modified') ?></th>
+                    <th width="10%" class="actions"><?= __('Actions') ?></th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($lessons as $lesson): ?>
                 <tr>
                     <td><?= $this->Number->format($lesson->id) ?></td>
+                    <td><?= (!empty($lesson->cover)) ? $this->Html->image('upload/lessons/'.$lesson->cover,['width'=>'100']) : '' ?></td>
                     <td><?= h($lesson->title) ?></td>
-                    <td><?= h($lesson->video) ?></td>
-                    <td><?= h($lesson->cover) ?></td>
-                    <td><?= $lesson->has('topic') ? $this->Html->link($lesson->topic->name, ['controller' => 'Topics', 'action' => 'view', $lesson->topic->id]) : '' ?></td>
-                    <td><?= h($lesson->created) ?></td>
+                    <td><?= (!empty($lesson->video)) ? $this->Html->link('<i class="fas fa-play"></i> '.__('Watch now'),$lesson->video,['class'=>'btn btn-primary video-btn video-popup','escape'=>false]) : '' ?></td>
+                    <td><?= $lesson->has('topic') ? $lesson->topic->name : '' ?></td>
                     <td><?= h($lesson->modified) ?></td>
                     <td class="actions">
                     <?= $this->Html->link('<i class="fas fa-pencil-alt"></i>', ['action' => 'edit', $lesson->id], ['class'=>'btn btn-icon waves-effect waves-light btn-primary btn-sm','escape'=>false,'alt'=>__('Edit'),'title'=>__('Edit')]) ?>
