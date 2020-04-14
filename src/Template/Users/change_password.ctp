@@ -16,7 +16,7 @@
          <?= $this->Form->control('password',['class'=>'form-control','required','placeholder'=>__('Enter your new password'), 'type'=>'password']) ?>
     </div>
     <div class="form-group mb-3">
-         <?= $this->Form->control(__('Repeat').' '.__('password'),['class'=>'form-control','required','placeholder'=>__('Repeat your new password'), 'type'=>'password']) ?>
+         <?= $this->Form->control('password2',['class'=>'form-control','required','placeholder'=>__('Repeat your new password'), 'type'=>'password', 'label'=>__('Repeat').' '.__('password')]) ?>
     </div>
 
     <div class="clearfix"></div>
