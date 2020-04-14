@@ -166,7 +166,11 @@ class ArticlesController extends AppController
 
         if ($this->Articles->save($article))
         {
-            unlink('img/upload/articles/'.$img);
+            $path = 'img/upload/articles/';
+            if (file_exists($path))
+                unlink($path.$img);
+            if (file_exists($path.'tb_'.$img))
+                unlink($path.'tb_'.$img);
             $this->Flash->success(__('The image has been deleted.'));
         }
         else

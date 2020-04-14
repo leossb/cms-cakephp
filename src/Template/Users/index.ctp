@@ -45,9 +45,10 @@
                 </thead>
                 <tbody>
                 <?php foreach ($users as $user): ?>
+                    <?php if (!empty($user->avatar)) $avatar = (file_exists('img/upload/users/tb_'.$user->avatar)) ? 'img/upload/users/tb_'.$user->avatar : 'img/upload/users/'.$user->avatar; ?>
                 <tr>
                     <td><?= $this->Number->format($user->id) ?></td>
-                    <td><?= (!empty($user->avatar)) ? '<div class="square-canva" style="background-image: url(\'img/upload/users/tb_'.$user->avatar.'\');"></div>' : '' ?></td>
+                    <td><?= (!empty($user->avatar)) ? '<div class="square-canva" style="background-image: url(\''.$avatar.'\');"></div>' : '' ?></td>
                     <td><?= h($user->email) ?></td>
                     <td><?= h($user->name) ?></td>
                     <td><?= h($user->role) ?></td>

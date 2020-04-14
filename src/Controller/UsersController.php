@@ -159,7 +159,16 @@ class UsersController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
+        $img = $user->avatar;
         if ($this->Users->delete($user)) {
+            if (!empty($img))
+            {
+                $path = 'img/upload/users/';
+                if (file_exists($path))
+                    unlink($path.$img);
+                if (file_exists($path.'tb_'.$img))
+                    unlink($path.'tb_'.$img);
+            }
             $this->Flash->success(__('The user').' '.__(' has been deleted.'));
         } else {
             $this->Flash->error(__('The user').' '.__(' could not be deleted. Please, try again.'));
@@ -184,7 +193,11 @@ class UsersController extends AppController
 
         if ($this->Users->save($user))
         {
-            unlink('img/upload/users/'.$img);
+            $path = 'img/upload/users/';
+            if (file_exists($path))
+                unlink($path.$img);
+            if (file_exists($path.'tb_'.$img))
+                unlink($path.'tb_'.$img);
             $this->Flash->success(__('The image has been deleted.'));
         }
         else

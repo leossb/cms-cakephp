@@ -176,7 +176,11 @@ class CoursesController extends AppController
 
         if ($this->Courses->save($course))
         {
-            unlink('img/upload/courses/'.$img);
+            $path = 'img/upload/courses/';
+            if (file_exists($path))
+                unlink($path.$img);
+            if (file_exists($path.'tb_'.$img))
+                unlink($path.'tb_'.$img);
             $this->Flash->success(__('The image has been deleted.'));
         }
         else
