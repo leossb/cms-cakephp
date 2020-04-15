@@ -39,8 +39,8 @@
                 <fieldset>
                     <?= $this->Form->control('category_id',['class'=>'form-control mb-2', 'label'=>__('Category'), 'empty'=>__('Select')]); ?>
                     <?=  $this->Form->control('title',['class'=>'form-control mb-2', 'label'=>__('Title')]); ?>
-                    <?=  $this->Form->control('body',['class'=>'form-control mb-2 summernote', 'label'=>__('Body')]); ?>
-                    <br/>
+                    <?=  $this->Form->control('body',['class'=>'form-control mb-2 summernote', 'label'=>__('Body')]); ?><br/>
+                    <?=  $this->Form->control('short_body',['class'=>'form-control mb-2', 'label'=>__('Short Body')]); ?>
                     <?= $this->Form->control('cover', ['class'=>'form-control mb-2', 'label'=>__('Cover'), 'type'=>'file']); ?>
                     <?=  $this->Form->control('published',['class'=>'checkbox-switchery','hiddenField' => false, 'type'=>'checkbox', 'data-plugin'=>'switchery', 'data-color'=>'#5d6dc3']); ?>
                     <?php //echo $this->Form->control('tags._ids', ['options' => $tags]); ?>

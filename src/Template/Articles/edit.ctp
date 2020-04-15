@@ -39,8 +39,8 @@
                 <fieldset>
                     <?= $this->Form->control('category_id',['class'=>'form-control mb-2', 'label'=>__('Category'), 'empty'=>__('Select')]); ?>
                     <?=  $this->Form->control('title',['class'=>'form-control mb-2', 'label'=>__('Title')]); ?>
-                    <?=  $this->Form->control('body',['class'=>'form-control mb-2 summernote', 'label'=>__('Body')]); ?>
-                    <br/>
+                    <?=  $this->Form->control('body',['class'=>'form-control mb-2 summernote', 'label'=>__('Body')]); ?><br/>
+                    <?=  $this->Form->control('short_body',['class'=>'form-control mb-2', 'label'=>__('Short Body')]); ?>
                     <?php
                     if (empty($article->cover))
                         echo $this->Form->control('cover', ['class'=>'w-100 mb-2', 'label'=>__('Cover'), 'type'=>'file']);

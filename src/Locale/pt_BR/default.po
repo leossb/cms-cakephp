@@ -325,8 +325,8 @@ msgstr "A imagem foi deletada."
 msgid "The image could not be deleted. Please, try again."
 msgstr "A imagem não pode ser deletada. Por favor, tente novamente."
 
-msgid ""
-msgstr ""
+msgid "Short Body'"
+msgstr "Texto curto"
 
 msgid ""
 msgstr ""
