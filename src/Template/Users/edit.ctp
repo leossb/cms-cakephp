@@ -36,7 +36,7 @@
                     <?php
                     echo $this->Form->control('email', ['class'=>'form-control mb-2', 'label'=>__('Email')]);
                     echo $this->Form->control('name', ['class'=>'form-control mb-2', 'label'=>__('Name')]);
-                    echo $this->Form->control('role', ['class'=>'form-control mb-2', 'label'=>__('Role'), 'options'=>['admin'=>__('Admin'),'author'=>__('Author')]]);
+                    echo $this->Form->control('role', ['class'=>'form-control mb-2', 'label'=>__('Role'), 'options'=>['admin'=>__('Admin'),'author'=>__('Author'),'guest'=>__('Guest')]]);
                     if (empty($user->avatar))
                         echo $this->Form->control('avatar', ['class'=>'form-control mb-2', 'label'=>__('Photo'), 'type'=>'file']);
                     else
