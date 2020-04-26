@@ -65,8 +65,11 @@ class ArticlesController extends AppController
             {
                 $path = './img/upload/articles';
                 $file = $this->upload_file_transfer('cover', 'sim', 'jpg,jpeg,JPEG,JPG,png,PNG',$path, 'nao', '200000', 'nao');
-                $this->resizeImage($file,$path,$path,1200,''); // Arquivo, origem, destino, largura, pre
-                $this->resizeImage($file,$path,$path,300,'tb_'); // Arquivo, origem, destino, largura, pre
+                if (!empty($file))
+                {
+                    $this->resizeImage($file,$path,$path,1200,''); // Arquivo, origem, destino, largura, pre
+                    $this->resizeImage($file,$path,$path,300,'tb_'); // Arquivo, origem, destino, largura, pre
+                }
                 $article->cover = $file;
             }
             $article->user_id = $this->Auth->user('id');
@@ -104,8 +107,12 @@ class ArticlesController extends AppController
             {
                 $path = './img/upload/articles';
                 $file = $this->upload_file_transfer('cover', 'sim', 'jpg,jpeg,JPEG,JPG,png,PNG', $path, 'nao', '200000', 'nao');
-                $this->resizeImage($file,$path,$path,1200,''); // Arquivo, origem, destino, largura, pre
-                $this->resizeImage($file,$path,$path,300,'tb_'); // Arquivo, origem, destino, largura, pre
+                if (!empty($file))
+                {
+                    $this->resizeImage($file,$path,$path,1200,''); // Arquivo, origem, destino, largura, pre
+                    $this->resizeImage($file,$path,$path,300,'tb_'); // Arquivo, origem, destino, largura, pre
+                }
+
                 $article->cover = $file;
             }
             if ($this->Articles->save($article)) {

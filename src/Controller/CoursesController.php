@@ -81,8 +81,11 @@ class CoursesController extends AppController
             {
                 $path = './img/upload/courses';
                 $file = $this->upload_file_transfer('cover', 'sim', 'jpg,jpeg,JPEG,JPG,png,PNG',$path, 'nao', '200000', 'nao');
-                $this->resizeImage($file,$path,$path,1200,''); // Arquivo, origem, destino, largura, pre
-                $this->resizeImage($file,$path,$path,300,'tb_'); // Arquivo, origem, destino, largura, pre
+                if (!empty($file))
+                {
+                    $this->resizeImage($file,$path,$path,1200,''); // Arquivo, origem, destino, largura, pre
+                    $this->resizeImage($file,$path,$path,300,'tb_'); // Arquivo, origem, destino, largura, pre
+                }
                 $course->cover = $file;
             }
             if ($this->Courses->save($course)) {
@@ -115,8 +118,11 @@ class CoursesController extends AppController
             {
                 $path = './img/upload/courses';
                 $file = $this->upload_file_transfer('cover', 'sim', 'jpg,jpeg,JPEG,JPG,png,PNG', $path, 'nao', '200000', 'nao');
-                $this->resizeImage($file,$path,$path,1200,''); // Arquivo, origem, destino, largura, pre
-                $this->resizeImage($file,$path,$path,300,'tb_'); // Arquivo, origem, destino, largura, pre
+                if (!empty($file))
+                {
+                    $this->resizeImage($file,$path,$path,1200,''); // Arquivo, origem, destino, largura, pre
+                    $this->resizeImage($file,$path,$path,300,'tb_'); // Arquivo, origem, destino, largura, pre
+                }
                 $course->cover = $file;
             }
             if ($this->Courses->save($course)) {
