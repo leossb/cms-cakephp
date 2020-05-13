@@ -35,11 +35,10 @@
 
             <?= $this->Form->create($comment) ?>
                 <fieldset>
-                    <?php
-                        echo $this->Form->control('user_id', ['options' => $users, 'class'=>'form-control mb-2', 'label'=>__('User')]);
-                        echo $this->Form->control('article_id', ['options' => $articles, 'class'=>'form-control mb-2', 'label'=>__('Article')]);
-                        echo $this->Form->control('description', ['class'=>'form-control mb-2', 'label'=>__('Description')]);
-                    ?>
+                    <?= $this->Form->control('user_id', ['options' => $users, 'class'=>'form-control mb-2', 'label'=>__('User')]) ?>
+                    <?= $this->Form->control('article_id', ['options' => $articles, 'class'=>'form-control mb-2', 'label'=>__('Article')]) ?>
+                    <?= $this->Form->control('description', ['class'=>'form-control mb-2', 'label'=>__('Description')]) ?>
+                    <?=  $this->Form->control('active',['class'=>'checkbox-switchery','hiddenField' => false, 'type'=>'checkbox', 'data-plugin'=>'switchery', 'data-color'=>'#5d6dc3']); ?>
                 </fieldset>
                 <?= $this->Form->button(__('Submit'),['class'=>'clearfix mt-2 btn btn-gradient']) ?>
             <?= $this->Form->end() ?>

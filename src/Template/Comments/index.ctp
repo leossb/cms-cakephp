@@ -12,7 +12,8 @@
 
 <!-- Required datatable js -->
 <?= $this->Html->script('../libs/datatables/jquery.dataTables.min.js', ['block' => 'scriptDatatable']) ?>
-<?= $this->Html->script('../libs/datatables/jquery.dataTables.min.js', ['block' => 'scriptDatatable']) ?>
+<?= $this->Html->script('../libs/datatables/dataTables.bootstrap4.min.js', ['block' => 'scriptDatatable']) ?>
+
 <!-- Buttons examples -->
 <?= $this->Html->script('../libs/datatables/dataTables.buttons.min.js', ['block' => 'scriptDatatableAdv']) ?>
 <?= $this->Html->script('../libs/datatables/buttons.bootstrap4.min.js', ['block' => 'scriptDatatableAdv']) ?>
@@ -36,6 +37,7 @@
                     <th scope="col"><?= __('id') ?></th>
                     <th scope="col"><?= __('User') ?></th>
                     <th scope="col"><?= __('Article') ?></th>
+                    <th scope="col"><?= __('Active') ?></th>
                     <th scope="col"><?= __('Created') ?></th>
                     <th scope="col"><?= __('Modified') ?></th>
                     <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -47,6 +49,7 @@
                     <td><?= $this->Number->format($comment->id) ?></td>
                     <td><?= $comment->has('user') ? $this->Html->link($comment->user->name, ['controller' => 'Users', 'action' => 'view', $comment->user->id]) : '' ?></td>
                     <td><?= $comment->has('article') ? $this->Html->link($comment->article->title, ['controller' => 'Articles', 'action' => 'view', $comment->article->id]) : '' ?></td>
+                    <td><?= ($comment->active) ? 'SIM' : 'NÃO'; ?></td>
                     <td><?= h($comment->created) ?></td>
                     <td><?= h($comment->modified) ?></td>
                     <td class="actions">

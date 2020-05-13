@@ -117,4 +117,30 @@ class CommentsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+
+    /**
+     * Active method
+     *
+     * @param string|null $id Comment id.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function active($id = null)
+    {
+        $comment = $this->Comments->get($id);
+        $active = $comment->active;
+        $comment->active = ($active == 1) ? 0 : 1;
+
+        if ($this->Comments->save($comment))
+        {
+            $this->Flash->success(__('Comment saved successfully.'));
+            //return $this->redirect(['controller'=>'Subtitles','action'=>'update',$comment->subtitle_id]);
+            return $this->redirect($this->referer());
+        }
+        $this->Flash->error(__('The comment could not be saved. Please, try again.'));
+
+        $this->set(compact('comment'));
+    }
+
 }

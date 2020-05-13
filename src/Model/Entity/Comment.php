@@ -30,6 +30,7 @@ class Comment extends Entity
         'user_id' => true,
         'article_id' => true,
         'description' => true,
+        'active' => true,
         'created' => true,
         'modified' => true,
         'user' => true,

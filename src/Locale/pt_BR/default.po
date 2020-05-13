@@ -328,17 +328,17 @@ msgstr "A imagem não pode ser deletada. Por favor, tente novamente."
 msgid "Short Body'"
 msgstr "Texto curto"
 
-msgid ""
-msgstr ""
+msgid "Comment saved successfully."
+msgstr "Comentário alterado com sucesso."
 
-msgid ""
-msgstr ""
+msgid "Active"
+msgstr "Ativo"
 
-msgid ""
-msgstr ""
+msgid "Comments to approval"
+msgstr "Comentários para aprovação"
 
-msgid ""
-msgstr ""
+msgid "Would you like to delete this comment?"
+msgstr "Gostaria de deletar este comentário?"
 
 msgid ""
 msgstr ""
