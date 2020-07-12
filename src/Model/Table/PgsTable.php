@@ -5,7 +5,6 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-use Cake\Utility\Text; // the Text class for slug
 
 /**
  * Pgs Model
@@ -13,6 +12,7 @@ use Cake\Utility\Text; // the Text class for slug
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
  * @property \App\Model\Table\PgsTable&\Cake\ORM\Association\BelongsTo $ParentPgs
  * @property \App\Model\Table\PgsTable&\Cake\ORM\Association\HasMany $ChildPgs
+ * @property &\Cake\ORM\Association\HasMany $PgsLists
  *
  * @method \App\Model\Entity\Pg get($primaryKey, $options = [])
  * @method \App\Model\Entity\Pg newEntity($data = null, array $options = [])
@@ -28,14 +28,6 @@ use Cake\Utility\Text; // the Text class for slug
  */
 class PgsTable extends Table
 {
-    public function beforeSave($event, $entity, $options)
-    {
-        if ($entity->isNew() && !$entity->slug) {
-            $sluggedTitle = Text::slug(strtolower($entity->name));
-            $entity->slug = substr($sluggedTitle, 0, 191); // trim slug to maximum length defined in schema
-        }
-    }
-
     /**
      * Initialize method
      *
@@ -65,6 +57,9 @@ class PgsTable extends Table
             'className' => 'Pgs',
             'foreignKey' => 'parent_id',
         ]);
+        $this->hasMany('PgsLists', [
+            'foreignKey' => 'pg_id',
+        ]);
     }
 
     /**
@@ -80,16 +75,16 @@ class PgsTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
+            ->scalar('slug')
+            ->maxLength('slug', 191)
+            ->requirePresence('slug', 'create')
+            ->notEmptyString('slug');
+
+        $validator
             ->scalar('name')
             ->maxLength('name', 191)
             ->requirePresence('name', 'create')
             ->notEmptyString('name');
-
-        $validator
-            ->scalar('slug')
-            ->maxLength('slug', 191)
-            ->notEmptyString('slug')
-            ->add('slug', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
             ->scalar('body')
@@ -111,7 +106,6 @@ class PgsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['slug']));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
         $rules->add($rules->existsIn(['parent_id'], 'ParentPgs'));
 

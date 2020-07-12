@@ -82,7 +82,7 @@ class PgsController extends AppController
     public function edit($id = null)
     {
         $pg = $this->Pgs->get($id, [
-            'contain' => [],
+            'contain' => ['PgsLists'],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $pg = $this->Pgs->patchEntity($pg, $this->request->getData());
@@ -95,7 +95,8 @@ class PgsController extends AppController
         }
         $users = $this->Pgs->Users->find('list');
         $parentPgs = $this->Pgs->ParentPgs->find('treeList');
-        $this->set(compact('pg', 'users', 'parentPgs'));
+        $list = $this->Pgs->PgsLists->find('all');
+        $this->set(compact('pg', 'users', 'parentPgs', 'list'));
     }
 
     /**

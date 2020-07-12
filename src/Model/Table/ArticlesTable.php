@@ -33,7 +33,10 @@ class ArticlesTable extends Table
         }
 
         if ($entity->isNew() && !$entity->slug) {
-            $sluggedTitle = Text::slug(strtolower($entity->title));
+            //$sluggedTitle = Text::slug(strtolower($entity->title));
+            //$entity->slug = substr($sluggedTitle, 0, 191); // trim slug to maximum length defined in schema
+            $sluggedTitle = Text::slug($entity->title);
+            $sluggedTitle = preg_replace("[^a-zA-Z0-9_]", "", strtr($sluggedTitle, "áàãâéêíóôõúüçÁÀÃÂÉÊÍÓÔÕÚÜÇ: ?", "aaaaeeiooouucaaaaeeiooouuc--_"));
             $entity->slug = substr($sluggedTitle, 0, 191); // trim slug to maximum length defined in schema
         }
     }

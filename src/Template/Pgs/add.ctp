@@ -44,7 +44,7 @@ $this->Breadcrumbs->add(__('Add'), ['controller' => 'pgs', 'action' => 'add'], [
                     <?php
                     echo $this->Form->control('name', ['class'=>'form-control mb-2', 'label'=>__('Name')]);
                     echo $this->Form->control('user_id', ['options' => $users, 'class'=>'form-control mb-2', 'label'=>__('User')]);
-                    echo $this->Form->control('parent_id', ['options' => $parentPgs, 'class'=>'form-control mb-2', 'label'=>__('Parent')]);
+                    echo $this->Form->control('parent_id', ['options' => $parentPgs, 'empty'=>[null=>'Nenhum'], 'class'=>'form-control mb-2', 'label'=>__('Parent')]);
                     echo $this->Form->control('body', ['class'=>'form-control mb-2', 'label'=>__('Body')]);
                     echo $this->Form->control('published',['class'=>'checkbox-switchery','hiddenField' => false, 'type'=>'checkbox', 'data-plugin'=>'switchery', 'data-color'=>'#5d6dc3']);
                     ?>

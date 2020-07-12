@@ -340,14 +340,14 @@ msgstr "Comentários para aprovação"
 msgid "Would you like to delete this comment?"
 msgstr "Gostaria de deletar este comentário?"
 
-msgid ""
-msgstr ""
+msgid "The pages list"
+msgstr "A lista"
 
-msgid ""
-msgstr ""
+msgid "Pgs List"
+msgstr "Lista"
 
-msgid ""
-msgstr ""
+msgid "Pgs Lists"
+msgstr "Listas"
 
 msgid ""
 msgstr ""

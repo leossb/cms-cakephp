@@ -1,21 +1,21 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\PgsTable;
+use App\Model\Table\PgsListsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\PgsTable Test Case
+ * App\Model\Table\PgsListsTable Test Case
  */
-class PgsTableTest extends TestCase
+class PgsListsTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\PgsTable
+     * @var \App\Model\Table\PgsListsTable
      */
-    public $Pgs;
+    public $PgsLists;
 
     /**
      * Fixtures
@@ -23,8 +23,8 @@ class PgsTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
+        'app.PgsLists',
         'app.Pgs',
-        'app.Users',
     ];
 
     /**
@@ -35,8 +35,8 @@ class PgsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('Pgs') ? [] : ['className' => PgsTable::class];
-        $this->Pgs = TableRegistry::getTableLocator()->get('Pgs', $config);
+        $config = TableRegistry::getTableLocator()->exists('PgsLists') ? [] : ['className' => PgsListsTable::class];
+        $this->PgsLists = TableRegistry::getTableLocator()->get('PgsLists', $config);
     }
 
     /**
@@ -46,19 +46,9 @@ class PgsTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Pgs);
+        unset($this->PgsLists);
 
         parent::tearDown();
-    }
-
-    /**
-     * Test beforeSave method
-     *
-     * @return void
-     */
-    public function testBeforeSave()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
     }
 
     /**

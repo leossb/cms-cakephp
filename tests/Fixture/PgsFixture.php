@@ -53,8 +53,8 @@ class PgsFixture extends TestFixture
                 'name' => 'Lorem ipsum dolor sit amet',
                 'body' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
                 'published' => 1,
-                'created' => '2020-04-09 23:36:36',
-                'modified' => '2020-04-09 23:36:36',
+                'created' => '2020-07-12 20:46:10',
+                'modified' => '2020-07-12 20:46:10',
             ],
         ];
         parent::init();

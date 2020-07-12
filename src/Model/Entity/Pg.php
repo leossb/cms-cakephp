@@ -34,8 +34,18 @@ class Pg extends Entity
      * @var array
      */
     protected $_accessible = [
-        '*' => true,
-        'id' => false,
-        'slug' => false
+        'user_id' => true,
+        'parent_id' => true,
+        'slug' => true,
+        'lft' => true,
+        'rght' => true,
+        'name' => true,
+        'body' => true,
+        'published' => true,
+        'created' => true,
+        'modified' => true,
+        'user' => true,
+        'parent_pg' => true,
+        'child_pgs' => true,
     ];
 }
